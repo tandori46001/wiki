@@ -9,10 +9,22 @@ Generating public/private ed25519 key pair.
 
 === RSA ===
 <pre>
-
+ssh-keygen -t rsa -b 4096
 </pre>
 
 === ADD  ===
 <pre>
+% eval "$(ssh-agent -s)"                                
+Agent pid 1623
+% .ssh % open ~/.ssh/config
+The file /Users/na/.ssh/config does not exist.
+% .ssh % touch ~/.ssh/config
+% .ssh % vi ~/.ssh/config
+    Host *
+    AddKeysToAgent yes
+    UseKeychain yes
+    IdentityFile ~/.ssh/id_ed25519
 
+% ssh-add -K ~/.ssh/id_ed25519
+Enter passphrase for /Users/Maxtor/.ssh/id_ed25519: ***********
 </pre>
