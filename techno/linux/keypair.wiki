@@ -1,0 +1,18 @@
+= KEYPAIR =
+
+== SSH KEYPAIR ==
+=== ed25519 ===
+<pre>
+ssh-keygen -t ed25519 
+Generating public/private ed25519 key pair.
+</pre>
+
+=== RSA ===
+<pre>
+
+</pre>
+
+=== ADD  ===
+<pre>
+
+</pre>

@@ -1,0 +1,6 @@
+= GIT WiKi =
+
+<pre>
+git config --global user.name "user"
+git config --global user.email user@email.com
+</pre>
