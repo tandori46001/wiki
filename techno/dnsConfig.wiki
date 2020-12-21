@@ -13,7 +13,7 @@ __NOTOC__
 
 
 *Enter the Canadian Shield DNS server addresses (IPv4 shown):
-#For Private, add the following:
+**For Private, add the following:
         * For IPv4 enter:  149.112.121.10 and 149.112.122.10
         * For IPv6 enter: 2620:10A:80BB::10 and 2620:10A:80BC::10
 #For Protected, add the following: 
