@@ -2,7 +2,7 @@
 
 == SSH KEYPAIR ==
 === ed25519 ===
-REF: https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54
+*REF: https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54
 <pre>
 ssh-keygen -t ed25519 
 Generating public/private ed25519 key pair.

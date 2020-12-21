@@ -11,6 +11,8 @@ __NOTOC__
 *REF: https://www.bleepingcomputer.com/
 *REF: https://www.wonderhowto.com/
 
+=== Privacy-Focused Social Media ===
+*REF: https://brax.me/
 
 == WEB ==
 === GoDaddy WebHost ===
