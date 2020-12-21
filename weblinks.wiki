@@ -30,3 +30,9 @@ __NOTOC__
 *REF: https://forwardemail.net/
 *REF: https://www.mailgun.com
 
+== OPEN SOURCE ==
+=== VIDEO CONFERENCING ===
+*REF: https://jitsi.org/jitsi-meet/
+
+
+
