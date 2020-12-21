@@ -18,7 +18,7 @@ Bonjour,
 Ceci est pour vous aviser que je serais en vacances du Lundi 21 Decembre au Lundi 4 Janvier.
 
 Merci et Bonne journee !
-<pre>
+</pre>
 
 == FORMATION ==
 <pre>
@@ -30,4 +30,10 @@ Merci et Bonne journee !
 </pre>
 
 == MALADIE ==
+<pre>
+Bonjour,
 
+Ceci est pour vous aviser que je suis malade. Pour toutes urgences, veuillez contacter Mr Bean.
+
+Merci et Bonne journee !
+</pre>
