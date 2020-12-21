@@ -8,14 +8,26 @@ Bonjour,
 
 Je serais absent du Lundi 21 Decembre au Lundi 4 Janvier.
 
-Bonne journee !
+Merci et Bonne journee !
 </pre>
 
 == VACANCES ==
+<pre>
+Bonjour,
 
+Ceci est pour vous aviser que je serais en vacances du Lundi 21 Decembre au Lundi 4 Janvier.
+
+Merci et Bonne journee !
+<pre>
 
 == FORMATION ==
+<pre>
+Bonjour,
 
+Ceci est pour vous aviser que je serais en formation du Lundi 21 Decembre au Lundi 4 Janvier.
+
+Merci et Bonne journee !
+</pre>
 
 == MALADIE ==
 
