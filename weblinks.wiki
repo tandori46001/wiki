@@ -1,5 +1,5 @@
 = WEB LINKs =
-
+__NOTOC__
 == CYBERSEC & TECHNO NEWS ==
 REF: https://www.helpnetsecurity.com/
 REF: https://nakedsecurity.sophos.com/
