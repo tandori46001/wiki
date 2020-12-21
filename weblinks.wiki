@@ -3,13 +3,13 @@ __NOTOC__
 <!-- This is a comment -->
 
 == CYBERSEC & TECHNO NEWS ==
-#REF: https://www.helpnetsecurity.com/
-#REF: https://nakedsecurity.sophos.com/
-#REF: https://www.securityweek.com/
-#REF: https://www.darkreading.com/
-#REF: https://thehackernews.com/
-#REF: https://www.bleepingcomputer.com/
-#REF: https://www.wonderhowto.com/
+*REF: https://www.helpnetsecurity.com/
+*REF: https://nakedsecurity.sophos.com/
+*REF: https://www.securityweek.com/
+*REF: https://www.darkreading.com/
+*REF: https://thehackernews.com/
+*REF: https://www.bleepingcomputer.com/
+*REF: https://www.wonderhowto.com/
 
 
 == WEB ==
