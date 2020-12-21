@@ -1,0 +1,8 @@
+= BACKUP LINUX =
+__NOTOC__
+<!-- This is a comment -->
+
+== Backup linux server ==
+<pre>
+dd if=/dev/mmcblk0p2 of="/folder-path/backup-$(date +%F).img" conv=noerror,sync &
+</pre>
