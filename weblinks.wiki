@@ -34,5 +34,6 @@ __NOTOC__
 === VIDEO CONFERENCING ===
 *REF: https://jitsi.org/jitsi-meet/
 
-
-
+=== MEDIAWIKI ===
+*REF: https://www.mediawiki.org/wiki/
+*REF: https://www.mediawiki.org/wiki/Help:Formatting
