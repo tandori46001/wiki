@@ -14,17 +14,17 @@ __NOTOC__
 
 == WEB ==
 === GoDaddy WebHost ===
-REF: https://www.godaddy.com
+*REF: https://www.godaddy.com
 
 === MX Lookup ===
-REF: https://mxtoolbox.com/
+*REF: https://mxtoolbox.com/
 
 === SSL CERTIFICATE - FREE ===
-REF: https://zerossl.com/
-REF: https://letsencrypt.org/
-REF: https://www.geckoandfly.com/24460/free-trusted-ssl-certificate/
+*REF: https://zerossl.com/
+*REF: https://letsencrypt.org/
+*REF: https://www.geckoandfly.com/24460/free-trusted-ssl-certificate/
 
 === MAIL forwardemail ===
-REF: https://forwardemail.net/
-REF: https://www.mailgun.com
+*REF: https://forwardemail.net/
+*REF: https://www.mailgun.com
 
