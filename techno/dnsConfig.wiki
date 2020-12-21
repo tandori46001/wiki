@@ -1,0 +1,25 @@
+= DNS - CIRA Canadian Shield =
+__NOTOC__
+<!-- This is a comment -->
+
+== CYBERSEC & TECHNO NEWS ==
+*REF: https://www.cira.ca/cybersecurity-services/canadian-shield
+
+*Private: DNS resolution service that keeps your DNS data private from third-parties. 
+
+*Protected: Includes Private features and adds malware and phishing blocking. 
+
+*Family: Includes Protected and Private features and blocks pornographic content. 
+
+
+*Enter the Canadian Shield DNS server addresses (IPv4 shown):
+#*For Private, add the following:
+        * For IPv4 enter:  149.112.121.10 and 149.112.122.10
+        * For IPv6 enter: 2620:10A:80BB::10 and 2620:10A:80BC::10
+#*For Protected, add the following: 
+        * For IPv4 enter: 149.112.121.20 and 149.112.122.20
+        * For IPv6 enter: 2620:10A:80BB::20 and 2620:10A:80BC::20
+#*or Family, add the following: 
+        * For IPv4 enter: 149.112.121.30 and 149.112.122.30
+        * For IPv6 enter: 2620:10A:80BB::30 and 2620:10A:80BC::30
+#*Save your new DNS settings.
