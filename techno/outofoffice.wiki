@@ -1,0 +1,21 @@
+= OUT OF OFFICE =
+__NOTOC__
+<!-- This is a comment -->
+
+== TEMPORAIRE ==
+<pre>
+Bonjour,
+
+Je serais absent du Lundi 21 Decembre au Lundi 4 Janvier.
+
+Bonne journee !
+</pre>
+
+== VACANCES ==
+
+
+== FORMATION ==
+
+
+== MALADIE ==
+
