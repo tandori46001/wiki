@@ -1,0 +1,40 @@
+= AWX - ANsible Tower =
+
+== install on Centos 8 ==
+
+*REF: https://www.youtube.com/watch?v=iIQ62T-Gsxw
+<pre>
+sudo dnf install epel-release -y
+sudo dnf install git gcc gcc-c++ ansible nodejs gettext device-mapper-persistent-data lvm2 bzip2 python3-pip -y
+sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf install docker-ce --nobest
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker $USER
+sudo pip3 install docker-compose
+
+sudo -i
+    alternatives --set python /usr/bin/python3
+
+git clone https://github.com/ansible/awx.git
+openssl rand -base64 30
+      ---copy the key---
+cd awx/installer
+nano inventory
+    secret_key=
+     project_data_dir=/var/lib/awx/projects
+    admin_password=password
+    #awx_alternate_dns_servers=
+    awx_alternate_dns_servers="8.8.8.8,8.8.4.4"
+sudo mkdir /var/lib/pgdocker
+sudo ansible-playbook -i inventory install.yml
+sudo nano /etc/sysconfig/selinux
+SELINUX=enforcing
+SELINUX=disabled
+sudo firewall-cmd --zone=public --add-masquerade --permanent
+# sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --permanent --add-service=https
+sudo firewall-cmd --reload
+</pre>
+
+
