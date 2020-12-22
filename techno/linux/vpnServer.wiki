@@ -72,6 +72,7 @@ root@tandori46001:~# curl ipinfo.io/ip
 184.75.223.219
 </pre>
 
+<pre>
 #!/bin/bash
 # --------------------------------------------------------
 # Air VPN | https://airvpn.org | Sunday 4th of March 2018 07:45:35 PM
@@ -89,11 +90,11 @@ echo ""; echo "AirVPN SSH Tunnel"
 ssh -i sshtunnel.key -L 1412:127.0.0.1:2018 sshtunnel@108.177.134.74 -p 22 -N -$
 read -t 5 -p "Retry? (or wait 5 sec for Y)" yn
 if [[ $yn == "n" || $yn == "N" ]]; then break; fi
-done```
+done
+</pre>
 
-
-# We changed a bunch of stuff in iptables when we used our Pi as a wireless access point, but we need to change that now.
-+++iptables: This clears out the old stuff.
+== We changed a bunch of stuff in iptables when we used our Pi as a wireless access point, but we need to change that now. ==
+*iptables: This clears out the old stuff.
 <pre>
 sudo iptables -F
 sudo iptables -t nat -F
