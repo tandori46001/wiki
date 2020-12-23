@@ -3,7 +3,7 @@
 == netstat Command ==
 *REF: https://www.tecmint.com/install-netstat-in-linux/
 <pre>
-# netstat -tuln
+# netstat -tulpn | grep 80
 </pre>
 
 *Display Network Interface Statistics
@@ -95,4 +95,52 @@ $ cat test.json | jq
 *lsof lists the open files associated with your application
 <pre>
 lsof -i tcp:80
+</pre>
+
+= dig / nslookup =
+*A domain name server (DNS) helps resolve a URL to a set of application servers. However, you may find that a URL does not resolve, which causes a connectivity issue for your application.
+<pre>
+$ nslookup mydatabase
+Server:   10.0.2.3
+Address:  10.0.2.3#53
+
+** server can't find mydatabase: NXDOMAIN
+</pre>
+*Using nslookup shows that mydatabase can't be resolved. Trying to resolve with dig yields the same result.
+<pre>
+$ dig mydatabase
+
+; <<>> DiG 9.9.4-RedHat-9.9.4-50.el7_3.1 <<>> mydatabase
+;; global options: +cmd
+;; connection timed out; no servers could be reached
+</pre>
+
+= firewall-cmd =
+<pre>
+$ sudo firewall-cmd --get-active-zones``
+corp
+  interfaces: ens0
+dmz
+  interfaces: ens1
+</pre>
+*To see what each zone permits, you can use the --list-all option:
+<pre>
+$ sudo firewall-cmd --zone corp --list-all
+corp
+  target: default
+  interfaces: ens0
+  services: cockpit dhcpv6-client ssh
+  ports:
+  protocols:
+[...]
+</pre>
+*Adding services is just as easy:
+<pre>
+$ sudo firewall-cmd --add-service http --permanent
+$ sudo firewall-cmd --reload
+</pre>
+
+= sestatus =
+<pre>
+$ sestatus
 </pre>
