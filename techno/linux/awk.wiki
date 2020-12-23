@@ -1,0 +1,86 @@
+= AWK Command =
+
+<pre>
+awk options 'BEGIN { } pat/condition { } END { }' filename
+command | awk options 'BEGIN { } pat/condition { } END { }' filename
+
+# display the first collon of the file
+awk -F":" '{print $1}' /etc/passwd
+
+# display the first collon of the fileand juste the first 10 entrys
+awk -F":" 'NR==1,NR==10{print $1}' /etc/passwd
+
+# display the first and second collon of the file
+awk -F":" '{print $1,$2}' /etc/passwd
+
+# display the lenght for the first collon and display the second collon of the file
+awk -F":" '{print length($1),$2}' /etc/passwd
+
+# pour ajouter des espaces entre la premiere collone et la deuxiemme avec: '{printf "%-16s %3d\n", $1,$2}'
+awk -F":" '{printf "%-16s %3d\n", $1,$2}' /etc/passwd
+
+# Autre exemple avec 3 colones et formater "plus beau !!!"
+awk -F":" '{printf "%-16s %4d %30s\n", $1,$3,$5}' /etc/passwd
+
+# pour ajouter en haut de chaque colone le header USER et UID
+awk -F":" '
+BEGIN {printf "%-16s %-3s\n", "User", "UID"}
+{printf "%-16s %3d\n", $1,$3}' /etc/passwd
+
+# pour ajouter en haut de chaque colone le header USER et UID ++ beau :-)
+awk -F":" '
+BEGIN {
+print "================================================="
+printf "%-16s %-3s\n","User","UID"
+print "================================================="
+}
+{printf "%-16s %4d\n", $1,$3}' /etc/passwd
+
+# display the second collon from all lines that start with /dev/ from the file /etc'fstab
+awk '/dev/ {print $2}' /etc/fstab
+
+# with condition: if firt colone is equal at /dev/ then print colone 2
+awk '{ if($1 ~ /dev/) print $2}' /etc/fstab
+
+# cherche mot "test" dans le fichier test.txt et imprime celui qui contiens des numeros
+grep -i test test.txt | awk '/[0-9]/ {print}'
+
+# cherche mot "test" dans le fichier test.txt et imprime celui qui COMMANCES par des numeros
+grep -i test test.txt | awk '/^[0-9]/ {print}'
+
+# pour specifier le delimitateur entre collones utiliser -F. Exemple le delimitateur es deux points ":"
+awk -F: '{print $1}' test.txt
+or
+awk -F":" '{print $1}' test.txt
+awk '{ print "a=" $1 , "b=" $2}' test.txt
+awk '{ a=$1 : b=$2 : print a,b}' test.txt   # va imprimer juste la valeur de a et b pour chaque ligne de fichier
+
+# faire un script AWK
+awk -f file.awk input.txt
+    file.awk
+        #!/bin/awk -f
+        BEGIN {
+            print "Finding the values into the file input.txt"
+        }
+        {
+        a=$1
+        b=$2
+        print "a="a, "b="b
+        }
+        END {
+            print "Completed the finding of values"
+        }
+
+# aussi on peux l'executer comme ca:
+./file.awk input.txt
+
+# faire la somme
+awk '{ a=$1 : b=$2 : print "sum="a+b }' imput.txt
+
+# la meme chose dans un script BASH
+    #!/bin/bash
+    read -p "Enter a value: " a
+    read -p "Enter a value: " b
+    
+    echo "$a $b" | awk '{ a=$1 : b=$2 : print "sum="a+b }'
+</pre>
