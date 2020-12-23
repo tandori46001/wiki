@@ -1,0 +1,41 @@
+= piscine =
+
+== My pool specifications ==
+<pre>
+Pool Trevi
+dimentions piscine=10’x20’ (carre)
+volume=28300 L
+
+————
+SEL = 4000 ppm
+PH = 7.4 - 7.8
+</pre>
+
+== OPEN Pool season ==
+<pre>
+- enleves les plus des debris / feuilles de la piscine
+- installer le moteur et tous les composents pour le bon fonctionement de la piscine
+- vider plus de 3/4 de la piscine (fixer la manete de filtre dans la position “vider”)
+- remplir la piscine jusqu’a 3/4 de l’equemoire
+- mettre le robot pour nettoyer la piscine
+- verifier le PH et l’ajuster a 7.4 - 7.6et attendre 4 heures (normalement est plus haut (~8.2), donc ajouter 450 g de PH - (Reducer))
+- mettre le traitement SHOCK de chlore et attendre 24 heures
+- si l’eau es embruiller, ajouter de “clarifiant” et attendre 24 heures
+
+- amener une petite bouteille d’eau de piscine a Trevi pour tester la qualite d’eau
+
+- ajouter 4 sacs de sel dans la piscine et attendre 24 heures
+- inataller le chlorinateur et le brancher
+</pre>
+
+== CLOSE Pool season ==
+<pre>
+- vider 3/4 d’eau de la piscine
+- fermer les breker de courant de moteur et chauffe-eau
+- debrancher tous les tuyaux de la piscine et enlever le moteur et les accesoires
+- vider l’eau des tous les tuyaux de la piscine (avec l’aspirateur / souffler)
+- poser les bouchons a la sortie de l’eau et dans l’equemoire
+- poser le stiromousse dans l’equemoire
+- ajuter l’antigel dans tous les tuyaux
+- mettre l'abris sur le chauffe-eau
+</pre>
