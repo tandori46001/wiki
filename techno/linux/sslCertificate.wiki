@@ -1,6 +1,37 @@
 = SSL cerificate =
 
+*REF: https://blog.ipswitch.com/how-to-use-openssl-to-generate-certificates
+
 == Self-Signed Certificates ==
 <pre>
 openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:4096 -keyout private.key -out certificate.crt
+</pre>
+
+<pre>
+    -req - Command passed to OpenSSL intended for creating and processing certificate requests usually in the PKCS#10 format.
+    -x509 - This multipurpose command allows OpenSSL to sign the certificate somewhat like a certificate authority. X.509 refers to a digitally signed document according to RFC 5280.
+    -sha256 - This is the hash to use when encrypting the certificate.
+    -nodes - This command is for no DES, which means that the private key will not be password protected.
+    -days - The number of days that the certificate will be valid.
+    -newkey - The format of the key, in this case an RSA key with 4096 bit encryption.
+    -keyout - The location to output the private key of the self-signed certificate.
+    -out - The location to output the certificate file itself.
+</pre>
+
+*Once the certificate has been generated, we should verify that it is correct according to the parameters that we have set.
+<pre>
+openssl x509 -in certificate.crt -text -noout
+</pre>
+
+<pre>
+    -x509 - This is a multipurpose command, and when combined with the other parameters here, it is for retrieving information about the passed in the certificate.
+    -in - The certificate that we are verifying.
+    -text - Strips the text headers from the output.
+    -noout - Needed not to output the encoded version of the certificate
+</pre>
+
+== Certificate Signing Request ==
+<pre>
+openssl req -new -newkey rsa:2048 -nodes -out request.csr -keyout private.key
+openssl req -in request.csr -text -noout -verify
 </pre>
