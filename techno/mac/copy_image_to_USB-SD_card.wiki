@@ -1,0 +1,20 @@
+= copy image to USB/SD card =
+
+== RaspberryPi - install UBUNTU / from MacOs X ==
+
+- Download latest Ubuntu image for RaspberryPi
+<pre>
+ubuntu-20.04-preinstalled-server-arm64+raspi.img.xz
+</pre>
+
+<pre>
+diskutil list
+diskutil unmountDisk /dev/disk2
+sudo sh -c 'gunzip -c ~/Downloads/ubuntu-20.04-preinstalled-server-arm64+raspi.img.xz | sudo dd of=/dev/disk2 bs=32m'
+</pre>
+- for raspberian
+*REF: https://www.raspberrypi.org/documentation/installation/installing-images/mac.md
+<pre>
+sudo dd bs=1m if=path_of_your_image.img of=/dev/rdiskN; sync
+sudo dd bs=1m if=~/Downloads/2020-02-13-raspbian-buster.img of=/dev/disk3; sync
+</pre>
