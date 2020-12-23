@@ -65,5 +65,34 @@ $ cat test.json | python -m json.tool
 }
 </pre>
 
+*For more advanced JSON parsing, you can install jq. jq provides some options that extract specific values from the JSON input. To pretty-print like the Python module above, simply apply jq to the output.
+<pre>
+$ cat test.json | jq
+{
+  "title": "Person",
+  "type": "object",
+  "properties": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "age": {
+      "description": "Age in years",
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "required": [
+    "firstName",
+    "lastName"
+  ]
+}
+</pre>
 
-
+= lsof =
+*lsof lists the open files associated with your application
+<pre>
+lsof -i tcp:80
+</pre>
