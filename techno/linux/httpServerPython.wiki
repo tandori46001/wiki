@@ -1,0 +1,4 @@
+= http server =
+<pre>
+python -m SimpleHTTPServer 8080
+</pre>
