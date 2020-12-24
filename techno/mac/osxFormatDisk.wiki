@@ -1,7 +1,7 @@
 = MAC format disk =
 
-=== format USB drive ===
-==== search for USB drive ====
+==== format USB drive ====
+*search for USB drive
 <pre>
 diskutil list
 diskutil eraseDisk FAT32 DISKNAME MBR /dev/disk#
