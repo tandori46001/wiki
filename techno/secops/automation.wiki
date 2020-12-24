@@ -1,0 +1,7 @@
+= automation =
+<pre>
+nmap -n -Ss -p 0-65535 -A -Pn -iL targets.txt -oA $(date +%Y%m%d)_nmap_tcp --reason
+</pre>
+
+
+== Discovery Nikto ==

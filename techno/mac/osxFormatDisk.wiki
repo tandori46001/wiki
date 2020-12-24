@@ -1,0 +1,37 @@
+= MAC format disk =
+
+*Formatting a Disk to Mac OS Extended Journaled (JHFS+) from Terminal in Mac OS X
+<pre>
+diskutil eraseDisk JHFS+ DiskName /dev/DiskNodeID
+</pre>
+
+*Formatting a Disk to Mac OS Extended (HFS+) from Terminal in Mac OS X
+<pre>
+diskutil eraseDisk HFS+ DiskName /dev/DiskNodeID
+</pre>
+
+*Formatting a Disk to MS-DOS fat32 from the Command Line in Mac OS X
+<pre>
+diskutil eraseDisk FAT32 DiskNameGoesHere /dev/DiskNodeIDHere
+</pre>
+
+*Formatting a Disk to ExFAT from the Command Line in Mac OS X
+<pre>
+diskutil eraseDisk ExFAT DiskName /dev/DiskNodeID
+</pre>
+
+<pre>
+diskutil list; echo; diskutil cs list
+<pre>
+
+<pre>
+
+<pre>
+
+<pre>
+
+<pre>
+
+<pre>
+
+<pre>
