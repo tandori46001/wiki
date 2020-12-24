@@ -24,7 +24,7 @@ diskutil eraseDisk ExFAT DiskName /dev/DiskNodeID
 diskutil list; echo; diskutil cs list
 </pre>
 
-*Users who would like additional details or information about the other options available including MBR and GPT settings can query the man page with “man diskutil” and searching for “eraseDisk”, or execute the command with no specifics like so:
+=== Users who would like additional details or information about the other options available including MBR and GPT settings can query the man page with “man diskutil” and searching for “eraseDisk”, or execute the command with no specifics like so: ===
 <pre>
 diskutil eraseDisk
 </pre>
