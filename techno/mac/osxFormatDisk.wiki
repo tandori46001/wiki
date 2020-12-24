@@ -22,7 +22,7 @@ diskutil eraseDisk ExFAT DiskName /dev/DiskNodeID
 
 <pre>
 diskutil list; echo; diskutil cs list
-<pre>
+</pre>
 
 *Users who would like additional details or information about the other options available including MBR and GPT settings can query the man page with “man diskutil” and searching for “eraseDisk”, or execute the command with no specifics like so:
 <pre>
@@ -30,11 +30,9 @@ diskutil eraseDisk
 </pre>
 *Usage: diskutil eraseDisk format name [APM[Format]|MBR[Format]|GPT[Format]]
 *MountPoint|DiskIdentifier|DeviceNode
-*Completely erase an existing whole disk. All volumes on this disk will be
-destroyed. Ownership of the affected disk is required.
+*Completely erase an existing whole disk. All volumes on this disk will be destroyed. Ownership of the affected disk is required.
 *Format is the specific file system name you want to erase it as (HFS+, etc.).
-*Name is the (new) volume name (subject to file system naming restrictions),
-or can be specified as %noformat% to skip initialization (newfs).
+*Name is the (new) volume name (subject to file system naming restrictions), or can be specified as %noformat% to skip initialization (newfs).
 *You cannot erase the boot disk.
 *Example: diskutil eraseDisk JHFS+ UntitledUFS disk3
 
