@@ -1,0 +1,7 @@
+= Raspberry Pi configuration =
+
+#1 install / flash SD card with "Ubuntu image for PaspberryPi"
+#2 log in and change the default password
+#3 copy public key to .ssh/authorized_keys
+#4 logout and login in order to verify the login with the keypair
+#5 run the ansible playbook in order to configure the new Ubuntu server
