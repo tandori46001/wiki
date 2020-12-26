@@ -9,5 +9,6 @@
 # apt-get update
 # apt-get install x2goserver
 # ps aux | grep x2go
+# service x2goserver start
 </pre>
 
