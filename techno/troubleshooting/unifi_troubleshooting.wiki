@@ -4,6 +4,8 @@
 *router = DOWN, no DHCP
 *wifi AP = DOWN
 Issue: Network doesnt work properly after Router firmware update
+before: 1.8.3.2949
+after: 1.8.4.2963
 
 <pre>
 <11>1 2020-12-26T03:00:56-05:00 494bdabd2357,udm-1.8.3.2949 ubnt-upgrade - - - ubnt-upgrade: [info] Getting FW file from /data/unifi-core/firmware/fwupdate.bin
