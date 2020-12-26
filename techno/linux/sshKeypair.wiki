@@ -19,6 +19,19 @@ ssh-keygen -t rsa -b 4096
 Enter passphrase: 
 </pre>
 
+=== copy ssh public key to remote server ===
+<pre>
+% ssh-copy-id user@x.x.x.x
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+user@x.x.x.x's password: 
+
+Number of key(s) added:        1
+
+Now try logging into the machine, with:   "ssh 'user@x.x.x.x'"
+and check to make sure that only the key(s) you wanted were added.
+</pre>
+
 === SSH AGENT ===
 <pre>
 % eval "$(ssh-agent -s)"                                
