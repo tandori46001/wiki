@@ -4,6 +4,7 @@
 *Methode 1:
 <pre>
 ubnt-upgrade https://fw-download.ubnt.com/data/udm/e649-udmpro-1.6.6-0761feeda3504456bdb80e09527ab56a.bin
+ubnt-upgrade https://fw-download.ubnt.com/data/udm/0bd4-udmpro-1.8.3-11d3b5f6375140738d85396963678037.bin
 </pre>
 
 *Methode 2:
