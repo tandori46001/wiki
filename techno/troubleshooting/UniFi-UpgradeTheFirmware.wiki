@@ -1,0 +1,12 @@
+= UniFi - Upgrade the Firmware of a UniFi Device =
+
+== UniFi Dream Machine ==
+*Methode 1:
+<pre>
+ubnt-upgrade https://fw-download.ubnt.com/data/udm/e649-udmpro-1.6.6-0761feeda3504456bdb80e09527ab56a.bin
+</pre>
+
+*Methode 2:
+<pre>
+ubnt-upgrade /mnt/data/firmware-name.bin
+</pre>
