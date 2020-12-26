@@ -1,5 +1,4 @@
 ---
-
 - name: Setup | create user
   user:
     name: "ransible"

@@ -1,2 +1,9 @@
+## set up ssh user name and path to python3 ##
+[all:vars]
+ansible_user='ransible'
+ansible_become=yes
+ansible_become_method=sudo
+ansible_python_interpreter='/usr/bin/env python3'
+
 [labo]
 10.10.33.115

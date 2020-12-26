@@ -1,6 +1,6 @@
 ---
 - name: Raspberry PI configuration
-  hosts: inventory
+  hosts: labo
   gather_facts: yes
   tasks:
 #    - import_tasks: ubuntuupdate.yml
