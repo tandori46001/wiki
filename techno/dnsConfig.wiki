@@ -18,3 +18,12 @@ __NOTOC__
         * For IPv4 enter: 149.112.121.30 and 149.112.122.30
         * For IPv6 enter: 2620:10A:80BB::30 and 2620:10A:80BC::30
 **Save your new DNS settings.
+
+=== DNS Other ===
+<pre>
+Sweden DNS:
+81.170.175.117
+193.178.35.130
+85.30.174.220
+94.254.119.208
+</pre>
