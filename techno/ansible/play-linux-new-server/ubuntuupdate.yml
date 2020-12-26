@@ -1,0 +1,9 @@
+---
+- name: Update APT package cache
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: Upgrade APT to the latest packages
+  apt: upgrade=safe
+
+- name: Adjust APT update intervals
+  copy: src=files/apt_periodic dest=/etc/apt/apt.conf.d/10periodic

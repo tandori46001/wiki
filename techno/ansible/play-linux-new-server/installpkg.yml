@@ -1,0 +1,10 @@
+---
+- name: Install optional packages
+  package:
+    name:
+      - vim
+      - ufw
+      - auditd
+      - audispd-plugins
+      - acct
+    state: latest

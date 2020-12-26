@@ -1,0 +1,19 @@
+---
+
+- file:
+    path: /etc/passwd
+    owner: root
+    group: root
+    mode: 0644
+
+- file:
+    path: /etc/shadow
+    owner: root
+    group: root
+    mode: 0640
+
+- file:
+    path: /etc/sudoers
+    owner: root
+    group: root
+    mode: 0440

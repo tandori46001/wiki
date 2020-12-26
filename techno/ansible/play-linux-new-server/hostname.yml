@@ -1,0 +1,8 @@
+---
+
+- include_vars: vars.yml
+
+- name: change hostname
+  hostname:
+    name: "{{ item.hostname }}"
+  with_items: "{{ srvconfig }}"

@@ -1,0 +1,6 @@
+---
+- name: copy audit.rules file
+  copy:
+    src: files/audit.rules
+    dest: /etc/audit/rules.d/audit.rules
+    backup: yes
