@@ -1,0 +1,13 @@
+= LABO =
+
+== qNAP ==
+
+*authorized_keys
+<pre>
+/mnt/HDA_ROOT/.config/ssh/authorized_keys
+</pre>
+
+*syslog server:
+<pre>
+/share/logs/messages
+</pre>

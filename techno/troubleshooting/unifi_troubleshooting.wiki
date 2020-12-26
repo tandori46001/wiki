@@ -1,0 +1,20 @@
+= unifi troubleshooting =
+
+== issue: 26 dec 2020, 2AM - 3AM ==
+*router = DOWN, no DHCP
+*wifi AP = DOWN
+Issue: Network doesnt work properly after Router firmware update
+
+<pre>
+<11>1 2020-12-26T03:00:56-05:00 494bdabd2357,udm-1.8.3.2949 ubnt-upgrade - - - ubnt-upgrade: [info] Getting FW file from /data/unifi-core/firmware/fwupdate.bin
+<14>1 2020-12-26T03:00:57-05:00 494bdabd2357,udm-1.8.3.2949 lcmd - - - lcmd: lcmd[30190]: lcmd.cmd_op_state(): 'upgrading'
+<14>1 2020-12-26T03:00:57-05:00 494bdabd2357,udm-1.8.3.2949 lcmd - - - lcmd: lcmd[30190]: lcmd.lcm_ui_command_string_set(): state: update
+
+<11>1 2020-12-26T03:01:16-05:00 494bdabd2357,udm-1.8.3.2949 ubnt-upgrade - - - ubnt-upgrade: [info] Writing kernel...
+<11>1 2020-12-26T03:01:16-05:00 494bdabd2357,udm-1.8.3.2949 ubnt-upgrade - - - ubnt-upgrade: [info] Writing rootfs...
+
+<11>1 2020-12-26T03:01:00-05:00 494bdabd2357,udm-1.8.3.2949 ubnt-upgrade - - - ubnt-upgrade: [info] Upgrading ...
+<11>1 2020-12-26T03:01:51-05:00 494bdabd2357,udm-1.8.3.2949 ubnt-upgrade - - - ubnt-upgrade: [info] Upgrade completed!
+</pre>
+
+*Everithing looks fine after router, AP and switches reboot
