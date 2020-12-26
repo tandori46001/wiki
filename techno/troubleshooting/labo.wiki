@@ -11,3 +11,8 @@
 <pre>
 /share/logs/messages
 </pre>
+
+* a partir d'un autre poste:
+<pre>
+ssh -p port user@ip tail -f /share/logs/messages
+</pre>
