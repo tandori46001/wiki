@@ -20,3 +20,8 @@ after: 1.8.4.2963
 </pre>
 
 *Everithing looks fine after router, AP and switches reboot
+
+== Ubiquiti - How to delete Honeypot corrupted configuration ==
+<pre>
+a venir...
+</pre>
