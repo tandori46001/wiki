@@ -1,0 +1,5 @@
+
+---
+- name: Install | Unifi controller with Glenn script
+  shell:
+    cmd="rm unifi-latest.sh &> /dev/null; wget https://get.glennr.nl/unifi/install/install_latest/unifi-latest.sh && bash unifi-latest.sh --skip --fqdn KralendijkLabo:idesjardins.com --email info@idesjardins.com"
