@@ -1,0 +1,4 @@
+---
+# How to encrypt:
+# ansible-vault encrypt_string "password123" --ask-vault-pass
+createpassword: "password456"
