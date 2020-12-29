@@ -5,3 +5,4 @@
 #3 copy public key to .ssh/authorized_keys
 #4 logout and login in order to verify the login with the keypair
 #5 run the ansible playbook in order to configure the new Ubuntu server
+*REF:  wiki/techno/ansible/play-linux-new-server/readMe.txt 

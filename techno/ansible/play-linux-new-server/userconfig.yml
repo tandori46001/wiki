@@ -19,6 +19,6 @@
 
 - name: Setup | authorized key upload
   authorized_key: user="ransible"
-    key="{{ lookup('file', 'files/id_ed25519.pub') }}"
+    key="{{ lookup('file', 'files/id_rsa.pub') }}"
     path='/home/ransible/.ssh/authorized_keys'
     manage_dir=no

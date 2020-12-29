@@ -6,4 +6,4 @@ ansible_become_method=sudo
 ansible_python_interpreter='/usr/bin/env python3'
 
 [labo]
-10.10.33.115
+192.168.10.101 ansible_port=34022
