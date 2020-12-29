@@ -5,5 +5,5 @@
 - name: Allow ssh traffic
   ufw: rule=allow port=34022 proto=tcp
 
-- name: Allow Unifi traffic
-  ufw: rule=allow port=8443 proto=tcp
+#- name: Allow Unifi traffic
+#  ufw: rule=allow port=8443 proto=tcp
