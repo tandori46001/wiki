@@ -1,0 +1,5 @@
+---
+- name: Setup | motd | display message after user logs in
+  copy:
+    src: files/motd
+    dest: /etc/motd
