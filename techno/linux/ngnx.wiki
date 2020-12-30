@@ -1,0 +1,58 @@
+= NGNX =
+
+*REF: https://medium.com/adrixus/beginners-guide-to-nginx-configuration-files-527fcd6d5efd
+
+=== Install nginx ===
+Then we can install nginx using following command
+<pre>
+sudo apt-get update
+sudo apt-get install nginx
+</pre>
+
+
+=== Manage the NGINX Process ===
+*To stop your web server
+<pre>
+sudo systemctl stop nginx
+</pre>
+*To start the web server when it is stopped
+<pre>
+sudo systemctl start nginx
+</pre>
+*To stop and then start the service again
+<pre>
+sudo systemctl restart nginx
+</pre>
+*If you are simply making configuration changes, NGINX can often reload without dropping connections. To do this, this command can be used
+<pre>
+sudo systemctl reload nginx
+</pre>
+*By default, NGINX is configured to start automatically when the server boots. If this is not what you want, you can disable this behavior by typing:
+<pre>
+sudo systemctl disable nginx
+</pre>
+*To re-enable the service to start up at boot
+<pre>
+sudo systemctl enable nginx
+</pre>
+*To test your config file
+<pre>
+sudo nginx -t
+</pre>
+
+=== Server Logs ===
+
+*/var/log/nginx/access.log: Every request to your web server is recorded in this log fil unless and until NGINX is configured to do otherwise.
+*/var/log/nginx/error.log: Every NGINX error will be recorded in this log only.
+
+=== Server Configuration ===
+
+*/etc/nginx: The NGINX configuration directory.
+*/etc/nginx/nginx.conf: The main NGINX configuration file.
+*/etc/nginx/sites-available/: The directory where per-site “server blocks” can be stored.
+*/etc/nginx/sites-enabled/: The directory where enabled per-site “server blocks” are stored.
+
+
+=== Content ===
+*/var/www/html: The actual web content, which by default only consists of the default Nginx page you saw earlier, 
+is served out of the /var/www/html directory. This can be changed by altering NGINX configuration files.
