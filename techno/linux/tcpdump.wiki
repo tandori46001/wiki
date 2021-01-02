@@ -1,0 +1,90 @@
+= tcpdump =
+
+==  ==
+<pre>
+# voir les interfaces
+sudo tcpdump -D
+# tous les interfaces, port 443
+sudo tcpdump -i any port 443
+# avec "-c20" juste les premiers 20 pakets
+sudo tcpdump -i any port 443 -c20
+# avec "-n" afficher la resolution dns ... en IP
+sudo tcpdump -i any port 443 -c20 -n
+# avec "s64" le size des pakets a 64 bytes
+sudo tcpdump -i any port 443 -c20 -n -s64
+
+
+sudo tcpdump -i any -c20 -n tcp and dst port 443 -t
+
+sudo tcpdump -i any -c20 -n tcp port 443 -t
+
+# turn off the sequence number with "-S"
+sudo tcpdump -i any -c20 -n tcp port 443 -t -S
+
+# save capture to a file with "-w"
+sudo tcpdump -i any port 53 -n -w monfichier.pcap
+
+# see how many pakats are written in the file with "-v"
+sudo tcpdump -i any port 53 -n -w monfichier.pcap -v
+
+# stop writting in the file after 20 packats "-c20"
+sudo tcpdump -i any port 53 -n -w monfichier.pcap -v -c20
+
+# read .pcap file with option "-r"
+sudo tcpdump -n -r monfichier.pcap | less
+
+</pre>
+
+=== keywords ===
+<pre>
+# host
+sudo tcpdump -i en1 -n host 192.168.60.1 -c20
+
+# src = the source keyword
+sudo tcpdump -i en1 -n src host 192.168.60.1 -c20
+
+# and
+sudo tcpdump -i en1 -n host 192.168.60.1 and host 192.168.60.222
+sudo tcpdump -i en1 -n host 192.168.60.222 and port 80
+
+# or
+sudo tcpdump -i en1 -n "host 192.168.60.222 and (port 80 or port 443)"
+
+
+sudo tcpdump -i en1 -n -c100 "src net 192.168.0.0/16 and not dst net 192.168.0.0/16 and not dst net 10.0.0.0/8"
+
+# apply filter to MAC addreses with "ether host"
+arp -a
+sudo tcpdump -i en1 -n ether host 34:4c:29:21:36:12 -c10
+
+# to see MAC addreses in the results with "-e"
+sudo tcpdump -i en1 -n ether host 34:4c:29:21:36:12 -c10 -e
+
+# tcp and syn flag
+sudo tcpdump -i any "tcp[tcpflags] & tcp-syn !=0"
+# tcp resets
+sudo tcpdump -i any "tcp[tcpflags] & tcp-rst !=0"
+</pre>
+
+=== display options ===
+<pre>
+# display more details about pakets with "-XX"
+sudo tcpdump -i en1 -n port 80 -c7 -XX
+
+# display more details about pakets/ just ASCHI with "-A"
+sudo tcpdump -i en1 -n port 80 -c7 -A
+
+# more verbose with "-v" and "-vv" and "-vvv"
+sudo tcpdump -i en1 -n port 80 -c7 -vvv
+
+# display less details with "-q"
+sudo tcpdump -i en1 -n -c7 -q
+
+# display less details with "-q" and "-t" (remove timestamp)
+sudo tcpdump -i en1 -n -c7 -q -t
+# display less details with "-q" and "-ttt" (show the time between consecutive pakets and the output)
+sudo tcpdump -i en1 -n -c7 -q -ttt
+# display less details with "-q" and "-ttttt" (show the time since the first packet was captured)
+sudo tcpdump -i en1 -n -c7 -q -ttttt
+
+</pre>
