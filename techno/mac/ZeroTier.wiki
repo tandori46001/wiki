@@ -1,0 +1,10 @@
+= ZeroTier =
+
+== install ==
+*REF: https://www.zerotier.com/download/
+
+
+== uninstall ==
+<pre>
+sudo "/Library/Application Support/ZeroTier/One/uninstall.sh"
+</pre>
