@@ -14,6 +14,10 @@ __NOTOC__
 === Privacy-Focused Social Media ===
 *REF: https://brax.me/
 
+== Malware ==
+*REF: https://malware-traffic-analysis.net/
+$REF: https://malware-traffic-analysis.net/training-exercises.html
+
 == WEB ==
 === GoDaddy WebHost ===
 *REF: https://www.godaddy.com
