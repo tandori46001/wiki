@@ -1,5 +1,19 @@
 = wireshark =
 
+== Basic configuration ==
+enlever:
+- no paclets
+- lenght
+ajouter:
+- View, Time display format, Date and time of day
+
+regarder:
+- Statistics, Protocol Hierarchy
+-- look for Hypertext Transfer Protocol (user download a malware)
+---- right click on "Hypertext Transfer Protocol", Apply as filter,  Selected
+------ add "Host" coloumn. You can find "Host" inside the packets, under the "Hypertext Transfer Protocol", Hosts, right click and choose "Apply as Column"
+
+
 == Basic Filters ==
 <pre>
 #
@@ -44,3 +58,7 @@ right click over the packet, Conversation filter, TCP
 <pre>
 right click over the "time to live", Apply as Column
 </pre>
+
+# look for tcp reset
+tcp.flags.reset == 1
+
