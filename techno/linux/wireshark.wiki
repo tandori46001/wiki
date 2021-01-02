@@ -30,8 +30,17 @@ tcp.flags.reset == 1
 </pre>
 
 
-=== Other Filter === 
-* just the packets involved
+=== Other Filter ===
+
+==== Troubleshoot reset ====
+* look for the RST packet
+* filter just the packets involved
 <pre>
 right click over the packet, Conversation filter, TCP
+</pre>
+
+* If the value of "time to live" is 64, 128, 255, the packets that has not been routed !!!
+* display "time to live" as a Column
+<pre>
+right click over the "time to live", Apply as Column
 </pre>
