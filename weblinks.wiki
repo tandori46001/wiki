@@ -16,7 +16,7 @@ __NOTOC__
 
 == Malware ==
 *REF: https://malware-traffic-analysis.net/
-$REF: https://malware-traffic-analysis.net/training-exercises.html
+*REF: https://malware-traffic-analysis.net/training-exercises.html
 
 == WEB ==
 === GoDaddy WebHost ===
