@@ -1,6 +1,6 @@
 = wireshark =
 
-== filters ==
+== Basic Filters ==
 <pre>
 #
 http.request.uri matches "q=wireshark"
@@ -27,4 +27,11 @@ tcp.flags.syn == 1
 # look for tcp reset
 tcp.flags.reset == 1
 
+</pre>
+
+
+=== Other Filter === 
+* just the packets involved
+<pre>
+right click over the packet, Conversation filter, TCP
 </pre>
