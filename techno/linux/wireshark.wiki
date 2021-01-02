@@ -18,6 +18,11 @@ regarder:
 in order to look for the file (malware) downloaded, File, Export Object, http
 - look for the "Content type": Application, select the file and Save it for later analysis 
 
+next step, look for the downloaded file hash. Use tool like HashMyFile.
+go to virustotal.com and submit the hash in order to see if is malicious.
+
+even if the file is not reconised like infected, be cautious, can be a zero day or not be already identified.
+
 == Basic Filters ==
 <pre>
 #
