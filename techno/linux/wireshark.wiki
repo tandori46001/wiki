@@ -1,11 +1,13 @@
 = wireshark =
 
 == Basic configuration ==
+* REF: https://www.youtube.com/watch?v=3t1BNAavrlQ
 enlever:
 - no paclets
 - lenght
 ajouter:
 - View, Time display format, Date and time of day
+- add colomn, source port and destination port
 
 regarder:
 - Statistics, Protocol Hierarchy
@@ -13,6 +15,8 @@ regarder:
 ---- right click on "Hypertext Transfer Protocol", Apply as filter,  Selected
 ------ add "Host" coloumn. You can find "Host" inside the packets, under the "Hypertext Transfer Protocol", Hosts, right click and choose "Apply as Column"
 
+in order to look for the file (malware) downloaded, File, Export Object, http
+- look for the "Content type": Application, select the file and Save it for later analysis 
 
 == Basic Filters ==
 <pre>
