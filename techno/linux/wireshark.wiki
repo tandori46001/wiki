@@ -1,0 +1,30 @@
+= wireshark =
+
+== filters ==
+<pre>
+#
+http.request.uri matches "q=wireshark"
+
+ip.addr == 192.0.2.1
+ip.src == 192.0.2.1
+dns or http
+tcp.port == 443
+
+# flag TCP problems in the trace (packet loss, etc)
+tcp.analysis.flags
+
+# remove noise
+!(arp or dns or icmp)
+
+tcp contains facebook
+
+http.request
+
+http.response.code == 200
+
+# look for syn attack
+tcp.flags.syn == 1
+# look for tcp reset
+tcp.flags.reset == 1
+
+</pre>
