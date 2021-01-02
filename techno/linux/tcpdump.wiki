@@ -88,3 +88,10 @@ sudo tcpdump -i en1 -n -c7 -q -ttt
 sudo tcpdump -i en1 -n -c7 -q -ttttt
 
 </pre>
+
+=== exemples ===
+<pre>
+# looking for output trafic on port 443, destination other that the gateway
+sudo tcpdump -i en0 "src host 192.168.60.144 and port 443 and not dst 192.168.60.1" -n -q
+
+</pre>
