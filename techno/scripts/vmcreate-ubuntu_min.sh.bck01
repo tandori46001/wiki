@@ -12,16 +12,16 @@ DISKTYPE="thin"
 VMNETWORKHOME="VIRHOME"
 VMNETWORKLABO1="VIRLABO1"
 VMNETWORKLABO2="VIRLABO2"
-POWERVMON="--powerOn"
-#POWERVMON="--powerOff"
+#POWERVMON="--powerOn"
+POWERVMON="--powerOff"
 
 #-------------------------------------------
-# informations sur des ubuntu server minimal
-OVAUBUNTUSRVMIN="vmlubuxx.ova"
-NOMBREVMUBUNTU='3'
+# informations sur des vm ubuntu server minimal
+OVAPATHUBUNTUSRVMIN="$OVAPATH/vmlubuxx.ova"
+NOMBREVMUBUNTU=3
 #VMNAMEUBUNTUSRVMIN1="lubusrvlabotest"  #entree les bon nom de vm
 VMNAMEUBUNTUSRVMIN1="vpnrouter"  #entree les bon nom de vm
-VMNAMEUBUNTUSRVMIN="lubusrvlabotest"    # mon debut pour multiples VMs
+VMNAMEUBUNTUSRVMIN="lubusrvlabotest
 #-------------------------------------------
 
 echo "enter user name : "
@@ -31,10 +31,10 @@ echo "enter user password : "
 read -s USERPASSWORD
 
 # create vm ubuntu-minimal LABO
-$PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMEUBUNTUSRVMIN1" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVAUBUNTUSRVMIN vi://$USERNAME:$USERPASSWORD@$ESXSRV
+$PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMEUBUNTUSRVMIN1" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATHUBUNTU vi://$USERNAME:$USERPASSWORD@$ESXSRV
 
 # create LABO, multiples vm
-for (( i=1; i<=$NOMBREVMUBUNTU; i++ ))
-do
-  $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n='$VMNAMEUBUNTUSRVMIN$i' --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVAUBUNTUSRVMIN vi://$USERNAME:$USERPASSWORD@$ESXSRV
-done
+#for (( i=1; i<=$NOMBREVMUBUNTU; i++ ))
+#do
+#  $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n='$VMNAMEUBUNTUSRVMIN$i' --network=$VMNETWORKLABO1 $POWERVMON $OVAPATHUBUNTU vi://$USERNAME:$USERPASSWORD@$ESXSRV
+#done
