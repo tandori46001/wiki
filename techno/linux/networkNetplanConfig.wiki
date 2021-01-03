@@ -16,6 +16,13 @@ sudo lshw -C network \
  | tail -1
 </pre>
 
+== Apply the netplan configuration ==
+<pre>
+netplan --debug generate
+
+netplan apply
+</pre>
+
 == How to Set Static IP Address ==
 <pre>
 etwork:
@@ -218,4 +225,22 @@ network:
              - to: 0.0.0.0/0
                  via: 11.0.0.1
                  metric: 100
+</pre>
+
+
+== MON Exemple ==
+<pre>
+network:
+    ethernets:
+        eth0:
+            dhcp4: true
+            optional: true
+    version: 2
+    wifis:
+        wlan0:
+            optional: true
+            access-points:
+                "BELL3865":
+                    password: "wifi_password"
+            dhcp4: true
 </pre>
