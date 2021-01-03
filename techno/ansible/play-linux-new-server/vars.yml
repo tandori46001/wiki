@@ -1,5 +1,4 @@
 ---
 srvconfig:
-  - hostname: "virlnx4042"
 #  - hostname: "rasplnx4040"
-
+  - hostname: "rasplnx4gb"

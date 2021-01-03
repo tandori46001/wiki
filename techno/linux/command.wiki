@@ -144,3 +144,8 @@ $ sudo firewall-cmd --reload
 <pre>
 $ sestatus
 </pre>
+
+== symbolic link ==
+<pre>
+ln -s /etc/openvpn/lunchVPN.sh lunchVPN
+</pre>

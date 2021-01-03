@@ -42,7 +42,7 @@ openvpn --config $vpnOntarioMintaka
 == creer lien symbolique dans init.d ==
 <pre>
 # cd /etc/init.d
-ls -n /etc/openvpn/lunchVPN.sh lunchVPN
+ln -s /etc/openvpn/lunchVPN.sh lunchVPN
 </pre>
 
 == rendre la connexion a openvpn automatique ==
