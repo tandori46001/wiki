@@ -1,0 +1,5 @@
+= email fowarding =
+
+* Services utilises:
+- godaddy.com = Creation de nom domain
+- forwardemail.net = pour envoyer de courriel

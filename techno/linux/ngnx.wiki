@@ -56,3 +56,14 @@ sudo nginx -t
 === Content ===
 */var/www/html: The actual web content, which by default only consists of the default Nginx page you saw earlier, 
 is served out of the /var/www/html directory. This can be changed by altering NGINX configuration files.
+
+
+=== exemples ===
+<pre>
+root@li1961-188:/etc/nginx/sites-available# ls -l
+total 20
+-rw-r--r-- 1 root root 2416 Mar 26  2020 default
+-rw-r--r-- 1 root root 4228 Dec 30 21:55 li1961-188.members.linode.com.conf
+-rw-r--r-- 1 root root 4228 Dec 30 22:08 meet.idesjardins.com
+
+</pre>
