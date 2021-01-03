@@ -44,6 +44,7 @@ ethernets:
 </pre>
 
 == How to set WiFi Authentication ==
+=== Configuring WPA and EAP WiFi Connections ===
 <pre>
 ethernets:
   id0:
@@ -57,3 +58,19 @@ ethernets:
       key-management: none | psk | eap 
       password: my-password-string
 </pre>
+
+<pre>
+    mode set the mode type for your wifi network interface. For connecting to access points the value should be set to infrastructure, which is the default.
+    bassid is the name of your wifi connection, as configured on your access point.
+    band is used to set the wireless band. It accepts two values: 5GHz and 2.4GHz. If left unset, the wifi endpoint and your network device will automatically establish the best band. By setting this value you will force the connection to use a specific band.
+    channel is used to set your wifi channel, and only takes affect if the band property is set.
+
+WPA and EAP connection modes accept the following configurations.
+
+    key-management sets how the supported key management mode.
+        none to disable key management
+        psk for WPA with pre-shared key, common for home wifi.
+        eap for WPA with EAP, which is common for enterprise wifi networks.
+    password sets the pre-shared key or password for your wifi network, when the mode is set to either psk or eap.
+</pre>
+
