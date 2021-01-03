@@ -1,0 +1,41 @@
+= wireshark with ubiquiti AP =
+
+== config ssh key ==
+<pre>
+1. config ssh key in unifi controler
+
+2. config ssh on osx file .ssh/config
+Host ap6k
+  HostName 10.0.99.2
+  User kaye777888
+  IdentityFile ~/.ssh/id_rsa
+  IdentitiesOnly yes
+</pre>
+
+== lunch wireshark on OSX ==
+<pre>
+# interface br0, vlan 500
+
+/Applications/Wireshark.app/Contents/MacOS/Wireshark -k -i <(ssh ap6k tcpdump -i br0.500 -U -w - )
+tcpdump: listening on br0.500, link-type EN10MB (Ethernet), capture size 262144 bytes
+
+</pre>
+
+== Other infos ==
+<pre>
+Connect to Access Point and filter for only VLAN tag 100
+wireshark -k -i <(ssh thomas@192.168.3.41 -p 22 tcpdump -i br0.100 -U -w - )
+
+Connect to Access Point and filter for only VLAN tag 69
+wireshark -k -i <(ssh thomas@192.168.3.41 -p 22 tcpdump -i br0.69 -U -w - )
+
+Connect to Access Point and filter out source connection address
+wireshark -k -i <(ssh thomas@192.168.1.187 -p 22 tcpdump -i br0 host not 192.168.69.2 -U -w - )
+
+How to make sure you can run Wireshark from your user:
+sudo dpkg-reconfigure wireshark-common
+Choose yes to allow non-superusers to capture packets
+
+Allow user to run dupmpcap
+sudo chmod +x /usr/bin/dumpcap
+</pre>
