@@ -1,6 +1,21 @@
 = network netplan configuration =
 *REF: https://netplan.io/examples/
 
+== Find Wireless Interface Name ==
+<pre>
+ls /sys/class/net
+</pre>
+
+<pre>
+# Use ip command: ip link or ip addr
+ip link show | grep -i wlp | awk -F: '{print $2}' | xargs
+ip addr show | grep -i wlp | awk -F: '{print $2}' | xargs# Use iw tool
+iw dev | awk '$1=="Interface" {print $2}'# Use lshw to check wireless adapters
+sudo lshw -C network \
+ | awk '/Wireless interface/,/logical name/ {print $3}' \
+ | tail -1
+</pre>
+
 == How to Set Static IP Address ==
 <pre>
 etwork:
