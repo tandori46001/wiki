@@ -1,12 +1,12 @@
 ---
 - name: Raspberry PI configuration
-  hosts: labo
+  hosts: labotest
   gather_facts: yes
   tasks:
+#    - import_tasks: ubuntuupdate.yml
     - import_tasks: userconfig.yml
     - import_tasks: sshconfig.yml
-    - import_tasks: ubuntuupdate.yml
-    - import_tasks: hostname.yml
+#    - import_tasks: hostname.yml
     - import_tasks: installpkg.yml
     - import_tasks: configure_ufw.yml
     - import_tasks: change_perm.yml
