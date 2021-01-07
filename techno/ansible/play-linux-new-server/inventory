@@ -8,7 +8,11 @@ ansible_python_interpreter='/usr/bin/env python3'
 [vpnrouter]
 vpnrouter    ansible_port=34022     ansible_user=ransible       ansible_host=192.168.60.17
 
-[labotest]
+[laboubuntu]
 lubusrvlabotest1    ansible_port=34022     ansible_user=ransible       ansible_host=192.168.60.9
 lubusrvlabotest2    ansible_port=34022     ansible_user=ransible       ansible_host=192.168.60.18
 lubusrvlabotest3    ansible_port=34022     ansible_user=ransible       ansible_host=192.168.60.23
+
+[labocentos]
+taal                 ansible_port=34022     ansible_user=ransible       ansible_host=192.168.60.22
+labo-centos8-mgmt    ansible_port=34022     ansible_user=ransible       ansible_host=192.168.60.22

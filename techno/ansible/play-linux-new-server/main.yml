@@ -1,6 +1,6 @@
 ---
 - name: linux Debian configuration
-  hosts: labotest
+  hosts: laboubuntu
   gather_facts: yes
   tasks:
     - import_tasks: userconfig.yml
