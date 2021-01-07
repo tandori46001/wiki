@@ -5,5 +5,10 @@ ansible_become=yes
 ansible_become_method=sudo
 ansible_python_interpreter='/usr/bin/env python3'
 
+[vpnrouter]
+vpnrouter    ansible_port=34022     ansible_user=ransible       ansible_host=192.168.60.17
+
 [labotest]
-lubusrvlabotest1    ansible_port=34022     ansible_user=ransible       ansible_host=192.168.60.8
+lubusrvlabotest1    ansible_port=34022     ansible_user=ransible       ansible_host=192.168.60.9
+lubusrvlabotest2    ansible_port=34022     ansible_user=ransible       ansible_host=192.168.60.18
+lubusrvlabotest3    ansible_port=34022     ansible_user=ransible       ansible_host=192.168.60.23

@@ -3,7 +3,7 @@
   hosts: labotest
   gather_facts: yes
   vars:
-    hostname: "lubusrvlabotest1"
+    hostname: "vpnrouter"
   tasks:
     - name: change hostname
       hostname:

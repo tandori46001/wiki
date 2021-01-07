@@ -1,0 +1,22 @@
+= UBUNTU VM / nmware ESXi - get same ip for ALL cloned vms =
+
+What about netplan configuration? There is an option dhcp-configuration that can be used as follows:
+...by default it is using machine-id, but by changing this feature we can 'force' it not to.
+
+
+*PATH: /etc/netplan/00-installer-config.yaml
+
+*line to add to your configuration
+<pre>
+dhcp-identifier: mac
+</pre>
+
+*exemple:
+<pre>
+network:
+  version: 2
+  ethernets:
+    enp3s0:
+      dhcp4: yes
+      dhcp-identifier: mac
+</pre>
