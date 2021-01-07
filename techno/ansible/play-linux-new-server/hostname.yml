@@ -1,8 +1,10 @@
 ---
-
-- include_vars: vars.yml
-
-- name: change hostname
-  hostname:
-    name: "{{ item.hostname }}"
-  with_items: "{{ srvconfig }}"
+- name: Raspberry PI configuration
+  hosts: labotest
+  gather_facts: yes
+  vars:
+    hostname: "lubusrvlabotest1"
+  tasks:
+    - name: change hostname
+      hostname:
+        name: "{{ hostname }}"

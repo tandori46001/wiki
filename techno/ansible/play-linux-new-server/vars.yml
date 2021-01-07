@@ -1,4 +1,4 @@
 ---
 srvconfig:
 #  - hostname: "rasplnx4040"
-  - hostname: "vpnrouter"
+  - hostname: "lubusrvlabotest3"
