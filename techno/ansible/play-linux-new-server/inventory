@@ -15,4 +15,3 @@ lubusrvlabotest3    ansible_port=34022     ansible_user=ransible       ansible_h
 
 [labocentos]
 taal                 ansible_port=34022     ansible_user=ransible       ansible_host=192.168.60.22
-labo-centos8-mgmt    ansible_port=34022     ansible_user=ransible       ansible_host=192.168.60.22
