@@ -1,0 +1,32 @@
+= Raspberry Pi to MacBook Pro =
+
+* connect Raspberry Pi to MacBook Pro with USB C cable
+
+
+== configuration on Raspberry Pi ==
+
+# Add this to the end of the file: denyinterfaces usb0 
+vi /etc/dhcp/dhcpd.conf
+
+# unstall dnsmask
+apt install dnsmasq -y
+
+# Now create a usb file:
+sudo nano /etc/dnsmasq.d/usb
+
+    # And place the following script in it:
+    interface=usb0
+    dhcp-range=10.55.0.2,10.55.0.6,255.255.255.248,1h
+    dhcp-option=3
+    leasefile-ro
+
+# Now it’s time to pick a static IP address. This can be used to connect to Raspberry Pi from the iPad Pro.
+sudo nano /etc/network/interfaces.d/usb0 
+
+
+
+== configuration on MacBook Pro ==
+
+
+
+

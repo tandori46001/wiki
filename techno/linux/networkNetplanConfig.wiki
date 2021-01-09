@@ -17,10 +17,25 @@ sudo lshw -C network \
 </pre>
 
 == Apply the netplan configuration ==
+
 <pre>
+# test configuration
+netplan try
+
+# test configuration
 netplan --debug generate
 
+# Apply
 netplan apply
+
+# debug
+netplan –d apply
+
+# restart the service
+systemctl restart network-manager
+#or
+systemctl restart system-networkd
+
 </pre>
 
 == How to Set Static IP Address ==
