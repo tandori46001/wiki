@@ -1,5 +1,5 @@
 = Raspberry Pi to MacBook Pro =
-
+*** NOT WORKING ***
 * connect Raspberry Pi to MacBook Pro with USB C cable
 
 

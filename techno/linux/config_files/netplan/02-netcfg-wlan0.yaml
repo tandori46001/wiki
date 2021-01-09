@@ -1,0 +1,8 @@
+network:
+    wifis:
+        wlan1:
+            optional: true
+            access-points:
+                "BELL":
+                    password: "password"
+            dhcp4: true
