@@ -1,0 +1,36 @@
+= DATE / TIME Configuration =
+
+== Ubuntu ==
+
+=== How to Set a Timezone in Ubuntu ===
+<pre>
+root@vpnrouter:~# timedatectl
+               Local time: Sat 2021-01-09 21:26:59 UTC
+           Universal time: Sat 2021-01-09 21:26:59 UTC
+                 RTC time: Sat 2021-01-09 21:26:59    
+                Time zone: Etc/UTC (UTC, +0000)       
+System clock synchronized: yes                        
+              NTP service: active                     
+          RTC in local TZ: no      
+
+root@vpnrouter:~# timedatectl list-timezones | grep New
+America/New_York
+America/North_Dakota/New_Salem
+
+root@vpnrouter:~# timedatectl set-timezone America/New_York
+
+root@vpnrouter:~# timedatectl
+               Local time: Sat 2021-01-09 16:29:02 EST  
+           Universal time: Sat 2021-01-09 21:29:02 UTC  
+                 RTC time: Sat 2021-01-09 21:29:02      
+                Time zone: America/New_York (EST, -0500)
+System clock synchronized: yes                          
+              NTP service: active                       
+          RTC in local TZ: no   
+</pre>
+
+=== Sync Time to NIST Atomic Clock ===
+*You can set your Ubuntu system to synchronize to the NIST atomic clock:
+<pre>
+timedatectl set–ntp yes
+</pre>
