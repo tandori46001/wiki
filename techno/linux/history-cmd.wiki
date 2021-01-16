@@ -1,0 +1,19 @@
+= history command =
+*REF: https://www.thegeekstuff.com/2008/08/15-examples-to-master-linux-command-line-history/
+
+== Display timestamp using HISTTIMEFORMAT ==
+<pre>
+# vi ~/.bash_profile
+HISTTIMEFORMAT='%F %T '
+</pre>
+
+
+== Control the total number of lines in the history using HISTSIZE ==
+<pre>
+# vi ~/.bash_profile
+HISTSIZE=450
+HISTFILESIZE=450
+</pre>
+
+
+

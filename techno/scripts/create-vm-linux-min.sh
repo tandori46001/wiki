@@ -1,12 +1,12 @@
 #!/bin/bash
 # create virtual mashine ubuntu from vmware ova template
 
-# set -x
+set -x
 
 # declare variables
 PATHOVFTOOL="/Users/na/_git/wiki/techno/ansible/play-linux-new-server/files/VMwareOVFTool"
 OVAPATH="/Users/na/Downloads/_vmware/images-ovf"
-ESXSRV="10.0.99.5"
+ESXSRV="192.168.60.5"
 DATASTORENAME="DS01_VMFS_SSD250GB"
 DISKTYPE="thin"
 VMNETWORKHOME="VIRHOME"
@@ -18,8 +18,6 @@ VMNETWORKLABO2="VIRLABO2"
 # informations sur des ubuntu server minimal
 OVAUBUNTUSRVMIN="vmlubuxx.ova"
 NOMBREVMUBUNTU='3'
-# VMNAMEUBUNTUSRVMIN1="lubusrvlabotest"  #entree les bon nom de vm
-# VMNAMEUBUNTUSRVMIN1="vpnrouter"  #entree les bon nom de vm
 VMNAMEUBUNTUSRVMIN="lubusrvlabotest"    # mon debut pour multiples VMs
 #-------------------------------------------
 
@@ -37,15 +35,16 @@ VMNAMECENTOS8SRVMIN="lcent8srvlabotest"    # mon debut pour multiples VMs
 
 echo "enter user name : "
 read -s USERNAME
+echo $USERNAME
 
 echo "enter user password : "
 read -s USERPASSWORD
 
 #---create "one" vm ubuntu-minimal LABO
-# $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMEUBUNTUSRVMIN1" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVAUBUNTUSRVMIN vi://$USERNAME:$USERPASSWORD@$ESXSRV
+$PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMEUBUNTUSRVMIN1" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVAUBUNTUSRVMIN vi://$USERNAME:$USERPASSWORD@$ESXSRV
 
 #---create "one" vm centos7-minimal LABO
-$PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMECENTOS7SRVMIN" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVACENT7SRV vi://$USERNAME:$USERPASSWORD@$ESXSRV
+# $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMECENTOS7SRVMIN" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVACENT7SRV vi://$USERNAME:$USERPASSWORD@$ESXSRV
 
 #---create "one" vm centos8-minimal LABO
 # $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMECENTOS8SRVMIN" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVACENT8SRV vi://$USERNAME:$USERPASSWORD@$ESXSRV
