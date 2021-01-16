@@ -1,0 +1,8 @@
+---
+
+- name: Creating a file with content
+  copy: 
+    src: "files/bash.bashrc"
+    dest: "/etc/bash.bashrc"
+    mode: '0640'
+    backup: yes

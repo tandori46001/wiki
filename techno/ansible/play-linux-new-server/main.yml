@@ -3,6 +3,7 @@
   hosts: laboubuntu
   gather_facts: yes
   tasks:
+    - import_tasks: bashrc.yml
     - import_tasks: userconfig.yml
     - import_tasks: sshconfig.yml
     - import_tasks: installpkg.yml
