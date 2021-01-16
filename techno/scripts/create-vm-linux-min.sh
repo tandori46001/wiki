@@ -1,7 +1,7 @@
 #!/bin/bash
 # create virtual mashine ubuntu from vmware ova template
 
-set -x
+# set -x
 
 # declare variables
 PATHOVFTOOL="/Users/na/_git/wiki/techno/ansible/play-linux-new-server/files/VMwareOVFTool"
@@ -23,8 +23,8 @@ VMNAMEUBUNTUSRVMIN="lubusrvlabotest"    # mon debut pour multiples VMs
 
 #-------------------------------------------
 # informations sur des centos server minimal
-OVACENT7SRV="lcent7srvlabotestxx.ova"
-OVACENT8SRV="lcent8srvlabotestxx.ova"
+OVACENT7SRV="cent7tem.ovf"
+OVACENT8SRV="cent8tem.ova"
 NOMBREVMCENTOS7='2'
 NOMBREVMCENTOS8='2'
 
@@ -41,7 +41,7 @@ echo "enter user password : "
 read -s USERPASSWORD
 
 #---create "one" vm ubuntu-minimal LABO
-$PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMEUBUNTUSRVMIN1" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVAUBUNTUSRVMIN vi://$USERNAME:$USERPASSWORD@$ESXSRV
+# $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMEUBUNTUSRVMIN1" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVAUBUNTUSRVMIN vi://$USERNAME:$USERPASSWORD@$ESXSRV
 
 #---create "one" vm centos7-minimal LABO
 # $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMECENTOS7SRVMIN" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVACENT7SRV vi://$USERNAME:$USERPASSWORD@$ESXSRV
@@ -56,10 +56,10 @@ $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=
 # done
 
 #---create LABO - CENTOS7 servers, multiples vm
-# for (( i=1; i<=$NOMBREVMCENTOS7; i++ ))
-# do
-#   $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMECENTOS7SRVMIN$i" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVACENT7SRV vi://$USERNAME:$USERPASSWORD@$ESXSRV
-# done
+for (( i=1; i<=$NOMBREVMCENTOS7; i++ ))
+do
+  $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMECENTOS7SRVMIN$i" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVACENT7SRV vi://$USERNAME:$USERPASSWORD@$ESXSRV
+done
 
 #---create LABO - CENTOS8 servers, multiples vm
 # for (( i=1; i<=$NOMBREVMCENTOS8; i++ ))
