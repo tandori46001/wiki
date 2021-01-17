@@ -5,7 +5,10 @@
 
 # declare variables
 PATHOVFTOOL="/Users/na/_git/wiki/techno/ansible/play-linux-new-server/files/VMwareOVFTool"
-OVAPATH="/Users/na/Downloads/_vmware/images-ovf"
+# OVAPATH="/Volumes/USBSSD1TB/_vmware/images-ovf/ubuntu"
+# OVAPATH="/Volumes/USBSSD1TB/_vmware/images-ovf/centos7"
+# OVAPATH="/Volumes/USBSSD1TB/_vmware/images-ovf/centos8"
+OVAPATH="/Volumes/USBSSD1TB/_vmware/images-ovf/suse"
 ESXSRV="192.168.60.5"
 DATASTORENAME="DS01_VMFS_SSD250GB"
 DISKTYPE="thin"
@@ -17,7 +20,7 @@ VMNETWORKLABO2="VIRLABO2"
 #-------------------------------------------
 # informations sur des ubuntu server minimal
 OVAUBUNTUSRVMIN="vmlubuxx.ova"
-NOMBREVMUBUNTU='3'
+NOMBREVMUBUNTU='2'
 VMNAMEUBUNTUSRVMIN="lubusrvlabotest"    # mon debut pour multiples VMs
 #-------------------------------------------
 
@@ -30,6 +33,13 @@ NOMBREVMCENTOS8='2'
 
 VMNAMECENTOS7SRVMIN="lcent7srvlabotest"    # mon debut pour multiples VMs
 VMNAMECENTOS8SRVMIN="lcent8srvlabotest"    # mon debut pour multiples VMs
+#-------------------------------------------
+
+#-------------------------------------------
+# informations sur des SUSE server minimal
+OVASUSESRVMIN="suse1.ovf"
+NOMBREVMSUSE='2'
+VMNAMESUSESRVMIN="lsusesrvlabotest"    # mon debut pour multiples VMs
 #-------------------------------------------
 
 
@@ -62,7 +72,13 @@ read -s USERPASSWORD
 # done
 
 #---create LABO - CENTOS8 servers, multiples vm
-for (( i=1; i<=$NOMBREVMCENTOS8; i++ ))
+# for (( i=1; i<=$NOMBREVMCENTOS8; i++ ))
+# do
+#   $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMECENTOS8SRVMIN$i" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVACENT8SRV vi://$USERNAME:$USERPASSWORD@$ESXSRV
+# done
+
+#---create LABO - SUSE servers, multiples vm
+for (( i=1; i<=$NOMBREVMSUSE; i++ ))
 do
-  $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMECENTOS8SRVMIN$i" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVACENT8SRV vi://$USERNAME:$USERPASSWORD@$ESXSRV
+  $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMESUSESRVMIN$i" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVASUSESRVMIN vi://$USERNAME:$USERPASSWORD@$ESXSRV
 done
