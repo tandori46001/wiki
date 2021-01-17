@@ -24,7 +24,7 @@ VMNAMEUBUNTUSRVMIN="lubusrvlabotest"    # mon debut pour multiples VMs
 #-------------------------------------------
 # informations sur des centos server minimal
 OVACENT7SRV="cent7tem.ovf"
-OVACENT8SRV="cent8tem.ova"
+OVACENT8SRV="cent8tem.ovf"
 NOMBREVMCENTOS7='2'
 NOMBREVMCENTOS8='2'
 
@@ -56,13 +56,13 @@ read -s USERPASSWORD
 # done
 
 #---create LABO - CENTOS7 servers, multiples vm
-for (( i=1; i<=$NOMBREVMCENTOS7; i++ ))
-do
-  $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMECENTOS7SRVMIN$i" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVACENT7SRV vi://$USERNAME:$USERPASSWORD@$ESXSRV
-done
+# for (( i=1; i<=$NOMBREVMCENTOS7; i++ ))
+# do
+#   $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMECENTOS7SRVMIN$i" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVACENT7SRV vi://$USERNAME:$USERPASSWORD@$ESXSRV
+# done
 
 #---create LABO - CENTOS8 servers, multiples vm
-# for (( i=1; i<=$NOMBREVMCENTOS8; i++ ))
-# do
-#   $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMECENTOS8SRVMIN$i" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVACENT8SRV vi://$USERNAME:$USERPASSWORD@$ESXSRV
-# done
+for (( i=1; i<=$NOMBREVMCENTOS8; i++ ))
+do
+  $PATHOVFTOOL/ovftool --disableVerification --noSSLVerify -ds=$DATASTORENAME -dm=$DISKTYPE -n="$VMNAMECENTOS8SRVMIN$i" --network=$VMNETWORKLABO1 $POWERVMON $OVAPATH/$OVACENT8SRV vi://$USERNAME:$USERPASSWORD@$ESXSRV
+done

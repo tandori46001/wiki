@@ -13,5 +13,13 @@ lubusrvlabotest1    ansible_port=34022     ansible_user=ransible       ansible_h
 lubusrvlabotest2    ansible_port=34022     ansible_user=ransible       ansible_host=192.168.60.18
 lubusrvlabotest3    ansible_port=34022     ansible_user=ransible       ansible_host=192.168.60.23
 
-[labocentos]
+[labocentos7]
+lcent7srvlabotest1    ansible_port=22     ansible_user=ransible       ansible_host=192.168.60.24
+lcent7srvlabotest2    ansible_port=22     ansible_user=ransible       ansible_host=192.168.60.20
+
+[labocentos8]
+lcent8srvlabotest1    ansible_port=22     ansible_user=ransible       ansible_host=192.168.60.25
+lcent8srvlabotest2    ansible_port=22     ansible_user=ransible       ansible_host=192.168.60.26
+
+[centos8]
 taal                 ansible_port=34022     ansible_user=ransible       ansible_host=192.168.60.22
