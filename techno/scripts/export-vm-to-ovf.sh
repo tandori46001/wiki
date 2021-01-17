@@ -7,7 +7,8 @@ PATHOVFTOOL="/Users/na/_git/wiki/techno/ansible/play-linux-new-server/files/VMwa
 #PATHDEST="/Users/na/Downloads/_vmware/images-ovf/ubuntu"
 #PATHDEST="/Users/na/Downloads/_vmware/images-ovf/centos7"
 #PATHDEST="/Users/na/Downloads/_vmware/images-ovf/centos8"
-PATHDEST="/Volumes/USBSSD1TB/_vmware/images-ovf/suse"
+#PATHDEST="/Volumes/USBSSD1TB/_vmware/images-ovf/suse"
+PATHDEST="/Volumes/USBSSD1TB/_vmware/images-ovf/manjaro"
 
 #---ESX server
 ESXSRV="192.168.60.5"
@@ -16,7 +17,8 @@ ESXSRV="192.168.60.5"
 # VMSRVNAME="lubusrvlabotest1"
 # VMSRVNAME="lcent7srvlabotest1"
 # VMSRVNAME="lcent8srvlabotest1"
-VMSRVNAME="suse1"
+# VMSRVNAME="suse1"
+VMSRVNAME="manjaro1"
 
 # export VM guest from ESXi to local PC
 #---OVF
