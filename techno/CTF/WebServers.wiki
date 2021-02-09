@@ -1,0 +1,13 @@
+= CTF - Web Servers =
+
+== scanner le site pour trouver les ports ouverts ==
+
+<pre>
+nmap -v -A www.targerwebsite.com
+</pre>
+
+== avec les resultats de scan NMAP, utiliser matasploit pour acceder a la machine ==
+
+<pre>
+???
+</pre>
