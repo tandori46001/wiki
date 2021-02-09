@@ -1,0 +1,7 @@
+= iso - make an ISO file =
+
+* Creer un repertoire: isodsk
+* Ajouter des fichiers dans le repertoire isodsk et executer la commande suivante:
+<pre>
+hdiutil makehybrid -o ~/Downloads/isodsk.iso ~/Downloads/isodsk -iso -joliet
+</pre>
