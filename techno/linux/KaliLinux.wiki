@@ -1,2 +1,57 @@
 = Kali linux =
+<pre>
+apt update && apt upgrade
 
+apt install tightvncserver
+
+cd /etc/init.d
+
+vi vncboot
+chmod 755 vncboot
+update-rc.d vncboot defaults
+
+reboot
+
+cd /etc/lightdm
+vi lightdm.conf
+	autologin-guest=false
+	autologin-user=root
+	autologin-user-timeout=0
+
+===================================
+# change root passwd
+passwd root
+===================================
+# bluetooth configuration
+bluetoothctl
+agent on
+default-agent
+scan on
+
+pair xxxxxxxxxxxxxxx
+
+quit
+===================================
+# create new user
+
+useradd -m user1
+passwd user1
+usermod -a -G sudo user1
+chsh -s /bin/bash user1
+===================================
+script
+±±±±±
+
+# change default ssh keys
+dpkg-reconfigure openssh-server
+
+update-rc.d -f ssh remove
+update-rc.d -f ssh defaults
+update-rc.d -f ssh enable 2 3 4 5
+
+# allow autologin as root
+cd /usr/local/src/re4son-kernel_4*
+./re4son-pi-tft-setup -a root
+
+===================================
+</pre>
