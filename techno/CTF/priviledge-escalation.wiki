@@ -1,0 +1,21 @@
+=1=
+
+==change user==
+<pre>
+$ id
+uid=1(deamon) gid=(deamon) groups=1(deamon)
+$ su - robot
+su: must be run from terminal
+
+$ python -c 'import pty; pty.spawn("/bin/sh")'
+$ su - robot
+su - robot
+Password: ********
+$ id
+uid=1002(robot) gid=1002(robot) groups=1002(robot)
+</pre>
+
+* find any program you can exploite for priviledge escalation
+<pre>
+find / -perm -4000 2>/dev/null
+</pre>
