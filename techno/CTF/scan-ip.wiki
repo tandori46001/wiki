@@ -5,7 +5,12 @@
 netdiscover -i eth0
 </pre>
 
-* apres on peux faire un scan acev zenmap
+* apres on peux faire un scan avec zenmap
 <pre>
 nmap -sV -A 192.168.1.102
+</pre>
+
+* apres on peux faire un scan des tous les ports
+<pre>
+nmap -p 1-65535 -T4 -A -v 192.168.1.102
 </pre>
