@@ -1,0 +1,6 @@
+= scan / ip scan =
+
+* avec Kali linux utiliser "netdiscover"
+<pre>
+netdiscover -i eth0
+</pre>
