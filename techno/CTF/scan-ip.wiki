@@ -4,3 +4,8 @@
 <pre>
 netdiscover -i eth0
 </pre>
+
+* apres on peux faire un scan acev zenmap
+<pre>
+nmap -sV -A 192.168.1.102
+</pre>
