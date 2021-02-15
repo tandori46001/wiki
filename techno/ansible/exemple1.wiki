@@ -1,0 +1,13 @@
+---
+- fail:
+    msg: Pas de support pour cet OS ({{ corpo_base_os__os_detect_ver }})
+  when:
+    - corpo_base_os__os_detect_ver != 'suse12'
+    - corpo_base_os__os_detect_ver != 'redhat7'
+
+- name: "Supression de la ligen erronee"
+  lineinfile:
+    path: /etc/security/limits.conf
+    line: '* hvlvlrevrvlfvlkfv'
+    state: absent
+
