@@ -10,6 +10,9 @@ __NOTOC__
 *REF: https://thehackernews.com/
 *REF: https://www.bleepingcomputer.com/
 *REF: https://www.wonderhowto.com/
+*REF: https://www.zataz.com/
+*REF: https://www.lemondeinformatique.fr/
+*REF: https://krebsonsecurity.com/
 
 === Privacy-Focused Social Media ===
 *REF: https://brax.me/

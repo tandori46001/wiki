@@ -1,0 +1,29 @@
+= SELINUX =
+* REF: https://www.youtube.com/watch?v=q_y30qZ_plQ
+
+=== Why is not working ===
+- wrong subject context
+- wrong object context
+- right subject and object context but no access
+- intrusion attempt
+
+== TROUBLESHOOTING ==
+=== cas 1, wrong subject context ===
+<pre>
+ls -ldZ <directory>
+</pre>
+
+=== right subject and object context but no access ===
+- verify if you can enable any booleans
+- if not, create a module
+<pre>
+
+</pre>
+
+=== Exemple1 ===
+
+
+=== Commands ===
+<pre>
+$ sestatus
+</pre>
