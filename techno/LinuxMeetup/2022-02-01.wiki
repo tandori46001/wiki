@@ -1,5 +1,6 @@
 = Linux Meetup, 1et fevrier 2022 =
 <!-- This is a comment -->
+*REF: https://www.meetup.com/Linux-Montreal/
 
 == CapRover ==
 === Description: ===
@@ -9,6 +10,14 @@ Equivalent a OpenShift pour les petites et moyenes entreprises.
 A la base c'est un Docker. Tres facile la gestion et deployement des containers.
 </pre>
 *REF: https://caprover.com
+
+== Web RTC ==
+=== Description: ===
+<pre>
+Basic web apps that uses the camera or microphone, to more advanced video-calling applications and screen sharing.
+Est utilise par Microsoft Teams, FaceTime, WhatsApp, etc.
+</pre>
+*REF: https://webrtc.org
 
 == Apache Guacamole ==
 === Description: ===
@@ -54,5 +63,5 @@ Docker Desktop
 *REF: https://hedgewars.org
 *REF: https://opensource.com/article/21/12/raspberry-pi-projects
 *REF: https://libreelec.tv
-*REF: 
+*REF: https://lineageos.org
 *REF: 
