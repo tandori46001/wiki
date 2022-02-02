@@ -15,7 +15,7 @@ A la base c'est un Docker. Tres facile la gestion et deployement des containers.
 === Description: ===
 <pre>
 Basic web apps that uses the camera or microphone, to more advanced video-calling applications and screen sharing.
-Est utilise par Microsoft Teams, FaceTime, WhatsApp, etc.
+Est utilise par Microsoft Teams, FaceTime, WhatsApp, Asterisk, Freeswitch, Jitsi, Kamailo, Rtpengine, Kurento, Mediasoup, Pion, etc.
 </pre>
 *REF: https://webrtc.org
 
