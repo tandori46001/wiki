@@ -4,32 +4,55 @@
 == CapRover ==
 === Description: ===
 <pre>
-
-Equivalent a OpenShift pour les petites et moyenes entreprises
+Free and Open Source PaaS!
+Equivalent a OpenShift pour les petites et moyenes entreprises.
+A la base c'est un Docker. Tres facile la gestion et deployement des containers.
 </pre>
 *REF: https://caprover.com
 
-== Subject2 ==
-
-
-
-== Subject3 ==
-
-
-
-== Subject4 ==
-
-
-
-
-
-
-*REF: https://www.google.com
-
+== Apache Guacamole ==
+=== Description: ===
 <pre>
-code
+Client RDP/SSH/VNC
+Comme LogMeIn
 </pre>
 
-< video width="100%" height="240" controls>
-<source src="https://2018.igem.org/wiki/images/f/fe/IGEM_Human_Practices.mp4" type="video/mp4">
-</video>
+<pre>
+Exemple d'installation: Installer dans le reseau un Raspberry Pi avec Apache Guacamole.
+ On va se connecter a l'interface de Apache Guacamole avec le browser.
+ Meme a partir de l'internet a travers un VPN.
+</pre>
+
+<pre>
+docker run -p 8090:8080 -d -e "EXTENTION-auth-totp" --restart always -v /home/gamma/guacamole:/config oznu/guacamole
+</pre>
+*REF: https://guacamole.apache.org
+
+== Open Nebula ==
+=== Description: ===
+<pre>
+VM et containers
+</pre>
+*REF: https://opennebula.io
+
+== Docker Desktop for Mac ==
+=== Description: ===
+<pre>
+Docker Desktop
+</pre>
+*REF: https://www.docker.com/docker-desktop/getting-started-for-mac
+
+
+== Autres sujets ==
+=== Description: ===
+<pre>
+
+</pre>
+*REF: https://fosdem.org/2022/
+*REF: https://fosdem.org/2022/schedule/track/lightning_talks/
+*REF: https://xibo.org.uk/xibo-for-linux
+*REF: https://hedgewars.org
+*REF: https://opensource.com/article/21/12/raspberry-pi-projects
+*REF: https://libreelec.tv
+*REF: 
+*REF: 
