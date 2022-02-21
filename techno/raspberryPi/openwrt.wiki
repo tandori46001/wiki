@@ -1,0 +1,132 @@
+=== OpenWRT ===
+
+=== Command line ===
+
+
+==== WiFi Configuration ====
+* check if the wifi module was detected correctly using the lspci command:
+root@OpenWrt:~# lspci
+
+* If the wireless card is detected correctly, use the iw command to confirm that the driver was loaded correctly as well:
+root@OpenWrt:~# iw list
+
+* commit wireless configuration
+uci commit wireless
+
+* show wireless configuration
+uci show wireless
+
+* restart the network with the wifi command:
+wifi
+
+* Restart the network:
+/etc/init.d/network restart
+
+===== Add new wireless interface =====
+# Install a package
+opkg update
+opkg install <package>
+ 
+# List packages
+opkg list
+ 
+# Display package information
+opkg info <package>
+
+opkg install kmod-rt2800-lib kmod-rt2800-usb kmod-rt2x00-lib kmod-rt2x00-usb kmod-usb-uhci kmod-usb-ohci kmod-mac80211 usbutils openvpn-openssl luci-app-openvpn nano
+opkg install kmod-usb-ehci kmod-usb2
+
+* detect/list usb devices
+lsusb
+
+* bring new wifi usb adaptor UP
+ifconfig wlan1 up
+
+* list and verifiy network interfaces
+ifconfig
+
+scp -P 224 AirVPN_US-Dallas-Texas_Leo_UDP-443.ovpn root@10.71.71.1:/etc/openvpn/client.conf
+
+*REF: https://airvpn.org/forums/topic/15405-using-airvpn-with-openwrt/
+
+
+
+<pre>
+root@Kralendijk:/etc/config# cat network
+
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option ula_prefix 'fd9f:d925:0948::/48'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'eth0'
+	option ipv6 '0'
+
+config interface 'lan'
+	option device 'br-lan'
+	option proto 'static'
+	option ipaddr '10.71.71.1'
+	option netmask '255.255.255.0'
+	option ip6assign '60'
+	option force_link '1'
+
+config interface 'vpnclient'
+	option proto 'none'
+	option device 'tun0'
+
+config device
+	option name 'wlan0'
+	option ipv6 '0'
+
+config interface 'wwan'
+	option proto 'dhcp'
+
+root@Kralendijk:/etc/config# 
+</pre>
+
+<pre>
+root@Kralendijk:/etc/config# cat wireless
+
+config wifi-device 'radio0'
+	option type 'mac80211'
+	option channel '161'
+	option hwmode '11a'
+	option path 'platform/soc/fe300000.mmcnr/mmc_host/mmc1/mmc1:0001/mmc1:0001:1'
+	option htmode 'VHT80'
+	option country 'US'
+	option disabled '0'
+	option cell_density '0'
+
+config wifi-device 'radio1'
+	option type 'mac80211'
+	option channel '11'
+	option hwmode '11g'
+	option path 'scb/fd500000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb1/1-1/1-1.1/1-1.1:1.0'
+	option htmode 'HT20'
+	option disabled '0'
+
+config wifi-iface 'default_radio1'
+	option device 'radio1'
+	option network 'lan'
+	option mode 'ap'
+	option ssid 'BELL4561'
+	option encryption 'psk2'
+	option key 'Un0-two-trois'
+
+config wifi-iface 'wifinet2'
+	option device 'radio0'
+	option mode 'sta'
+	option network 'wwan'
+	option ssid 'oranjestad'
+	option encryption 'psk2'
+	option key 'pRoP8#Lp7349N>aF+7$T6p[xHp=TYbjU9.Kfz6p^stYspi$@Z8vk'
+
+root@Kralendijk:/etc/config# 
+</pre>
