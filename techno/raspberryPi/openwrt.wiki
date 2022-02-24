@@ -7,6 +7,9 @@
 * check if the wifi module was detected correctly using the lspci command:
 root@OpenWrt:~# lspci
 
+* check if the wifi module was detected correctly using the lsusb command:
+lsusb
+
 * If the wireless card is detected correctly, use the iw command to confirm that the driver was loaded correctly as well:
 root@OpenWrt:~# iw list
 
@@ -33,8 +36,7 @@ opkg list
 # Display package information
 opkg info <package>
 
-opkg install kmod-rt2800-lib kmod-rt2800-usb kmod-rt2x00-lib kmod-rt2x00-usb kmod-usb-uhci kmod-usb-ohci kmod-mac80211 usbutils openvpn-openssl luci-app-openvpn nano
-opkg install kmod-usb-ehci kmod-usb2
+opkg install kmod-rt2800-lib kmod-rt2800-usb kmod-rt2x00-lib kmod-rt2x00-usb kmod-usb-uhci kmod-usb-ohci kmod-mac80211 usbutils openvpn-openssl luci-app-openvpn kmod-usb-ehci kmod-usb2 nano
 
 * detect/list usb devices
 lsusb
@@ -94,23 +96,32 @@ root@Kralendijk:/etc/config#
 <pre>
 root@Kralendijk:/etc/config# cat wireless
 
+root@Kralendijk:/etc/openvpn# cat /etc/config/wireless
+
 config wifi-device 'radio0'
 	option type 'mac80211'
-	option channel '161'
 	option hwmode '11a'
 	option path 'platform/soc/fe300000.mmcnr/mmc_host/mmc1/mmc1:0001/mmc1:0001:1'
 	option htmode 'VHT80'
-	option country 'US'
 	option disabled '0'
 	option cell_density '0'
+
+config wifi-iface 'wifinet1'
+	option device 'radio0'
+	option mode 'sta'
+	option network 'wwan'
+	option ssid 'oranjestad'
+	option encryption 'psk2'
+	option key 'password'
 
 config wifi-device 'radio1'
 	option type 'mac80211'
 	option channel '11'
 	option hwmode '11g'
-	option path 'scb/fd500000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb1/1-1/1-1.1/1-1.1:1.0'
+	option path 'scb/fd500000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb1/1-1/1-1.2/1-1.2:1.0'
 	option htmode 'HT20'
 	option disabled '0'
+	option cell_density '0'
 
 config wifi-iface 'default_radio1'
 	option device 'radio1'
@@ -118,15 +129,8 @@ config wifi-iface 'default_radio1'
 	option mode 'ap'
 	option ssid 'BELL4561'
 	option encryption 'psk2'
-	option key 'Un0-two-trois'
+	option key 'password'
 
-config wifi-iface 'wifinet2'
-	option device 'radio0'
-	option mode 'sta'
-	option network 'wwan'
-	option ssid 'oranjestad'
-	option encryption 'psk2'
-	option key 'pRoP8#Lp7349N>aF+7$T6p[xHp=TYbjU9.Kfz6p^stYspi$@Z8vk'
+root@Kralendijk:/etc/openvpn# 
 
-root@Kralendijk:/etc/config# 
 </pre>
