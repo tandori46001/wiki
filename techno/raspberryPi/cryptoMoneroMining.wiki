@@ -1,0 +1,23 @@
+# Download Raspberry Pi image: https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2022-01-28/
+# download Raspberry Pi imager in order to put the image on the SD card: https://www.raspberrypi.com/software/
+# when you to put the image on the SD card wiyh the Raspberry Pi imager, choose the CTRL+SHIFT+x in order to configure ssh, password for pi user and wifi
+
+sudo apt update
+sudo apt install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev -y
+
+git clone https://github.com/xmrig/xmrig.git
+cd xmrig
+mkdir build
+cd build
+cmake ..
+make
+
+path: /home/pi/xmrig/build
+./xmrig -o gulf.moneroocean.stream:10128 -u 45qaBWjkstLZ1fvcmVEHN15AFfZQkhSTGYki4SwshVQ4TZkE5fDZqaZG3ggefsgXRj4zTh66G34A8BJLpemx5hQCJR7s89j -p pi4nico01
+
+OPTIONS:
+h   hash rate
+c   current connexion
+s   share accepted
+
+# view moneroocean.stream statistics: https://moneroocean.stream/

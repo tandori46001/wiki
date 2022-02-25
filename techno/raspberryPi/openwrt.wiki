@@ -52,7 +52,6 @@ scp -P 224 AirVPN_US-Dallas-Texas_Leo_UDP-443.ovpn root@10.71.71.1:/etc/openvpn/
 *REF: https://airvpn.org/forums/topic/15405-using-airvpn-with-openwrt/
 
 
-
 <pre>
 root@Kralendijk:/# cat /etc/config/network
 
