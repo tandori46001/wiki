@@ -55,6 +55,14 @@ scp -P 224 AirVPN_US-Dallas-Texas_Leo_UDP-443.ovpn root@10.71.71.1:/etc/openvpn/
 === TROUBLESHOOTING ===
 
 ===== daemon.err odhcpd[867]: Failed to send to ff02::1%lan@br-lan (Permission denied) =====
+<pre>
 # /etc/init.d/odhcpd disable
 # /etc/init.d/odhcpd stop
+</pre>
 
+===== reboot every day =====
+<pre>
+crontab -e
+	# file: /etc/cron.d/reboot
+	0 5 * * * reboot &> /dev/null
+</pre>
