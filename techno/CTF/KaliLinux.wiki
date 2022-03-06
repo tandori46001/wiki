@@ -12,12 +12,15 @@ update-rc.d vncboot defaults
 
 reboot
 
+===================================
+# Kali auto-login session
 cd /etc/lightdm
 vi lightdm.conf
 	autologin-guest=false
 	autologin-user=root
 	autologin-user-timeout=0
 
+sudo apt -y install kali-root-login
 ===================================
 # change root passwd
 passwd root
