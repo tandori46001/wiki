@@ -12,3 +12,11 @@ sudo hydra -l "myusername" -P wordlist.txt 192.168.1.10 ssh
 # password list in Kali linux
 # /usr/share/worldlist/rockyou.txt.gz
 </pre>
+
+<pre>
+# passoword hash crack
+
+sudo hashcat -a 0 -m 1800 -o crackedpasswords.txt hashes,txt worldlist.txt
+
+</pre>
+
