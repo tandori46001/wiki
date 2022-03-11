@@ -1,0 +1,59 @@
+== GPG encryption ==
+
+=== installation ===
+sudo apt-get install gnupg
+
+=== generate keypair ===
+gpg --list-keys
+chmod 0700 .gnupg
+
+gpg --full-generate-key
+
+=== edit key ===
+
+==== change expiration date ====
+gpg --edit-key nico@hotmail.com
+# list all keys
+gpg> list
+
+# on choisi la cle 0
+gpg> key 0
+gpg> expire
+Key is valid for ? (0) 2y
+
+# !!! TRES IMPORTANT !!! SAVE
+gpg> save
+
+gpg --list-keys
+
+=== change passphrase ===
+gpg --passwd noco@hotmail.com
+
+=== create revoke certificate ===
+gpg --output revoke-nicoexemple.asc --gen-revoke nico@hotmail.com
+gpg --list-keys
+
+=== EXPORT public key in TEXT format ===
+gpg --export --armor nico@hotmail.com
+
+=== GPG config file ===
+vi gpg-agent.conf
+    default-cache-ttl 604800
+    max-cache-ttl 604800
+
+
+==========================
+echo "ello" > text.txt
+
+sha1sum test.txt
+
+== encrypt file ==
+gpg --list-secret-keys
+
+gpg --sign test.txt
+gpg --verify test.txt.gpg
+
+gpg --detach-sign test.txt
+gpg --verify test.txt.sig
+
+

