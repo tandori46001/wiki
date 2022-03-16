@@ -3,6 +3,21 @@
 === installation ===
 sudo apt-get install gnupg
 
+=== GPG Files EXPINATION ===
+# public keys stored in the keyring
+pubring.gpg
+
+# No different from "~/.gnupg/pubring.gpg".
+# It hat the public keys.
+# However, "~/.gnupg/pubring.gpg~" also stores cache of key signature verification results.
+~/.gnupg/pubring.gpg~
+
+# secret keys
+~/.gnupg/secring.gpg
+~/.gnupg/private-keys-v1.d/
+
+
+
 === generate keypair ===
 gpg --list-keys
 chmod 0700 .gnupg
@@ -23,6 +38,18 @@ Key is valid for ? (0) 2y
 
 # !!! TRES IMPORTANT !!! SAVE
 gpg> save
+
+==== Renewing an expired GPG subkey ====
+gpg –list-keys
+this gives you a list of all the keys on your computer. you need this to find the keyname that you are trying to update.
+gpg –edit-key [keyname]
+command> list
+lists the available subkeys
+command> key [subkey]
+choose the number of the subkey you want to edit; e.g. key 1
+command> expire
+expire lets you set a new experation date for the subkey.
+command> save
 
 gpg --list-keys
 
@@ -57,3 +84,30 @@ gpg --detach-sign test.txt
 gpg --verify test.txt.sig
 
 
+=== Correct way to replace a GPG key ===
+====  want to create a new GPG key with a longer key size ====
+Expire the old key... don't revoke it... sign the new key with the old key...
+
+??? Some people recommend cross-signing old with new and new with old.
+
+Expiring old keys rather than revoking them is probably a better method, 
+    because the expiration date on a pgp key can easily be changed at will 
+    and posted to a public key server without permanent repercussions.
+
+
+=== convert an existing pubring.gpg file to the keybox format ===
+REF: https://www.gnupg.org/documentation/manuals/gnupg/GPG-Configuration.html
+
+# you first backup the ownertrust values, then rename pubring.gpg to publickeys.backup,
+#    so it wonât be recognized by any GnuPG version, run import, and finally restore the ownertrust values:
+<pre>
+  $ cd ~/.gnupg
+  $ gpg --export-ownertrust >otrust.lst
+  $ mv pubring.gpg publickeys.backup
+  $ gpg --import-options restore --import publickeys.backups
+  $ gpg --import-ownertrust otrust.lst
+</pre>
+
+
+=== Liens ===
+REF: https://medium.com/@azerella/gpg-for-dummies-5bdde94fa36d
