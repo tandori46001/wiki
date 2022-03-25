@@ -1,0 +1,25 @@
+
+
+
+prerequis
+
+1. a la creation du container, configurer: ENTRYPOINT ["/usr/sbin/init"]
+2. Run containers in privileged mode
+3. yum update
+4. yum install net-tools
+5. yum install sudoers
+
+6.
+useradd apache
+usermod -aG wheel apache
+vi /etc/sudoers
+
+7.
+su - apache
+sudo yum install -y httpd
+sudo systemctl start httpd
+
+
+
+REF: https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-centos-7
+
