@@ -8,6 +8,7 @@ prerequis
 3. yum update
 4. yum install net-tools
 5. yum install sudoers
+    yum install -y openssh-server
 
 6.
 useradd apache
@@ -17,9 +18,74 @@ vi /etc/sudoers
 7.
 su - apache
 sudo yum install -y httpd
+sudo systemctl enable httpd
 sudo systemctl start httpd
 
+8.
+sudo mkdir -p /var/www/your_domain/html
+sudo mkdir -p /var/www/your_domain/log
+sudo chown -R $USER:$USER /var/www/your_domain/html
+sudo chmod -R 755 /var/www
+sudo vi /var/www/your_domain/html/index.html
+    <html>
+    <head>
+        <title>Welcome to your website!</title>
+    </head>
+    <body>
+        <h1>Success! The your_domain virtual host is working!</h1>
+    </body>
+    </html>
+
+sudo mkdir /etc/httpd/sites-available /etc/httpd/sites-enabled
+
+sudo vi /etc/httpd/conf/httpd.conf
+    # add to the end of the file
+    IncludeOptional sites-enabled/*.conf
+
+sudo vi /etc/httpd/sites-available/your_domain.conf
+    <VirtualHost *:80>
+        ServerName www.your_domain
+        ServerAlias your_domain
+        DocumentRoot /var/www/your_domain/html
+        ErrorLog /var/www/your_domain/log/error.log
+        CustomLog /var/www/your_domain/log/requests.log combined
+    </VirtualHost>
+
+sudo ln -s /etc/httpd/sites-available/your_domain.conf /etc/httpd/sites-enabled/your_domain.conf
 
 
 REF: https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-centos-7
 
+====================================
+=== SSL ===
+
+sudo yum install -y openssl
+sudo yum install mod_ssl
+
+sudo mkdir /etc/ssl/private
+sudo chmod 700 /etc/ssl/private
+
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
+
+sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+
+sudo vi /etc/httpd/conf.d/your_domain_or_ip.conf
+    <VirtualHost *:443>
+        ServerName your_domain_or_ip
+        DocumentRoot /var/www/html
+        SSLEngine on
+        SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
+        SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+    </VirtualHost>
+
+
+### Creating a Redirect from HTTP to HTTPS (Optional)
+sudo vi /etc/httpd/conf.d/non-ssl.conf
+    <VirtualHost *:80>
+        ServerName your_domain_or_ip
+            Redirect "/" "https://your_domain_or_ip/"
+    </VirtualHost>
+
+### Applying Apache Configuration Changes
+sudo apachectl configtest
+sudo systemctl restart httpd.service
