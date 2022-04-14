@@ -89,3 +89,5 @@ sudo vi /etc/httpd/conf.d/non-ssl.conf
 ### Applying Apache Configuration Changes
 sudo apachectl configtest
 sudo systemctl restart httpd.service
+
+REF: https://hbayraktar.medium.com/how-to-install-ssl-certificate-on-apache-for-centos-7-38c25b84d8b1

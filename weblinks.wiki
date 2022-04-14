@@ -44,3 +44,37 @@ __NOTOC__
 === MEDIAWIKI ===
 *REF: https://www.mediawiki.org/wiki/
 *REF: https://www.mediawiki.org/wiki/Help:Formatting
+
+=== WEB TOOLS ===
+Subdomain Takeover
+*REF: https://www.honeybadger.io/blog/subdomain-takeover/
+
+Offloading Cybersecurity defense tools from Nmap to Subdomain Finder, theHarvester
+*REF: https://www.nmmapper.com/
+
+Search Engine for the Internet of Everything
+*REF: https://www.shodan.io/
+
+reverse DNS records. It has over 230 billion records retrieved from 2008 to the present.
+*REF: http://ptrarchive.com/
+
+AWS - Elastic IP addresses
+*REF: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html
+
+Subdomain Takeover Via Shopify
+*REF: https://haqtify.com/writeup/subdomain-takeover-via-shopify/
+
+Reverse IP API reveals all domains that share an IP address in a single API call
+*REF: https://dns-history.whoisxmlapi.com
+
+Domain who is ...
+*REF: https://www.whois.com
+
+*REF: https://securitytrails.com/
+
+Find the subdomain address
+*REF: https://securitytrails.com/list/keyword/services-conseils-linux
+
+Check if your email or phone is in a data breach
+*REF: https://haveibeenpwned.com/
+
