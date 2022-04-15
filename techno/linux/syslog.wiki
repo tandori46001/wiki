@@ -1,0 +1,52 @@
+syslog
+
+== How to Find Linux Reboot Reason? ==
+
+=== Inspect Reboot Time ===
+<pre>
+$ who -b
+system boot 2021-02-13 20:51
+
+$ last -x | head | tac
+abhishek pts/0 192.168.1.16 Sat Feb 13 19:53 - 19:55 (00:02)
+reboot system boot 3.10.0-1160.11.1 Sat Feb 13 19:55 - 20:54 (00:58)
+</pre>
+
+=== Check System Messages ===
+/var/log/messages
+/var/log/syslog
+
+One such command that you can use to filter out system logs is given below:
+<pre>
+sudo grep -iv ': starting\|kernel: .*: Power Button\|watching system buttons\|Stopped Cleaning Up\|Started Crash recovery kernel' \
+  /var/log/messages /var/log/syslog /var/log/apcupsd* \
+  | grep -iw 'recover[a-z]*\|power[a-z]*\|shut[a-z ]*down\|rsyslogd\|ups'
+</pre>
+
+=== Verify auditd Logs ===
+<pre>
+$ sudo ausearch -i -m system_boot,system_shutdown | tail -4
+----
+type=SYSTEM_SHUTDOWN msg=audit(Saturday 13 February 2021 A.852:8) : pid=621 uid=root auid=unset ses=unset subj=system_u:system_r:init_t:s0 msg=' comm=systemd-update-utmp exe=/usr/lib/systemd/systemd-update-utmp hostname=? addr=? terminal=? res=success'
+----
+type=SYSTEM_BOOT msg=audit(Saturday 13 February 2021 A.368:8) : pid=622 uid=root auid=unset ses=unset subj=system_u:system_r:init_t:s0 msg=' comm=systemd-update-utmp exe=/usr/lib/systemd/systemd-update-utmp hostname=? addr=? terminal=? res=success'
+$
+
+$ sudo ausearch -i -m system_boot,system_shutdown | tail -4
+----
+type=SYSTEM_BOOT msg=audit(Saturday 13 February 2021 A.852:8) : pid=621 uid=root auid=unset ses=unset subj=system_u:system_r:init_t:s0 msg=' comm=systemd-update-utmp exe=/usr/lib/systemd/systemd-update-utmp hostname=? addr=? terminal=? res=success'
+----
+type=SYSTEM_BOOT msg=audit(Saturday 13 February 2021 A.368:8) : pid=622 uid=root auid=unset ses=unset subj=system_u:system_r:init_t:s0 msg=' comm=systemd-update-utmp exe=/usr/lib/systemd/systemd-update-utmp hostname=? addr=? terminal=? res=success'
+$
+</pre>
+
+=== Analyze systemd journal ===
+sudo mkdir /var/log/journal
+$ sudo systemd-tmpfiles --create --prefix /var/log/journal 2>/dev/null
+$ sudo systemctl -s SIGUSR1 kill systemd-journald
+
+$ journalctl --list-boots
+$ journalctl -b -1 -n
+
+
+
