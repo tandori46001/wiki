@@ -1,0 +1,34 @@
+= SCREEN APP =
+
+== commands ==
+<pre>
+
+screen -S session_name
+
+press “Ctrl-A” and “d“
+
+pungki@mint ~ $ screen -ls
+There are screens on:
+        7849.pts-0.mint (10/06/2021 01:50:45 PM)        (Detached)
+        5561.pts-0.mint (10/06/2021 11:12:05 AM)        (Detached)
+2 Sockets in /var/run/screen/S-pungki
+
+
+pungki@mint ~ $ screen -r 7849
+
+</pre>
+
+=== Leaving Screen Terminal Session ===
+There are 2 (two) ways to leaving the screen. 
+    First, we are using “Ctrl-A” and “d” to detach the screen. 
+    Second, we can use the exit command to terminating the screen. 
+    
+    You also can use “Ctrl-A” and “K” to kill the screen.
+
+
+Switching Between Screen Terminal Windows
+When you do a nested screen, you can switch between screens using keys “Ctrl-A” and “n“. It will move to the next screen. When you need to go to the previous screen, just press “Ctrl-A” and “p“.
+
+To create a new screen window, just press “Ctrl-A” and “c“.
+
+press the “Ctrl-A” and “x” shortcuts to lock the screen.

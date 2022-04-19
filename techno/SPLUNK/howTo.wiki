@@ -1,7 +1,7 @@
 SPUNK
 
 
-== SEARCH ==
+== SEARCH == for WiFi DEACT ATTACK (Wifi Intrusion Detection with Unifi and Splunk)
 index="unifi" disassociated OR associated
 | rex "STA\s(?P<MAC>[^\s]+)"
 | transaction MAC maxspan=1m maxpause=10s | where eventcount > 2
