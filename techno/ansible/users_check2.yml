@@ -1,0 +1,25 @@
+---
+- name: Check if users exist
+  hosts: your_target_server
+  gather_facts: False
+
+  vars:
+    users_file: /path/to/users.txt
+
+tasks:
+    - name: Read users from file
+      slurp:
+        src: "{{ users_file }}"
+      register: users_content
+
+    - name: Check and display users
+      shell: "grep -Fw '{{ item }}' /etc/passwd"
+      with_items: "{{ users_content['content'] | b64decode | split('\n') }}"
+      register: user_check
+      ignore_errors: True
+
+    - name: Display users found
+      debug:
+        msg: "User {{ item.item }} found"
+      loop: "{{ user_check.results }}"
+      when: item.rc == 0
