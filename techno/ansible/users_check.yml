@@ -1,36 +1,25 @@
 ---
-- name: Verify if users exist on the target server
-  hosts: your_target_hosts
-  gather_facts: false
+- name: Check if users exist
+  hosts: your_target_server
+  gather_facts: False
 
   vars:
-    user_list_file: /path/to/user_list.txt
+    users_file: /path/to/users.txt
 
   tasks:
-    - name: Read user list file
+    - name: Read users from file
       slurp:
-        src: "{{ user_list_file }}"
-      register: user_list_content
+        src: "{{ users_file }}"
+      register: users_content
 
-    - name: Extract users from the list
-      set_fact:
-        user_list: "{{ user_list_content.content | b64decode | utf8_content }}"
-      when: user_list_content is defined and user_list_content.content is defined
+    - name: Verify users exist
+      shell: "getent passwd {{ item }}"
+      with_items: "{{ users_content['content'] | b64decode | split('\n') }}"
+      register: user_exists
+      ignore_errors: True
 
-    - name: Check if users exist
-      command: "id -u {{ item }}"
-      with_items: "{{ user_list }}"
-      register: user_checks
-      ignore_errors: true
-
-    - name: Display existence of users
+    - name: Display existing users
       debug:
-        msg: "User '{{ item.item }}' exists"
-      with_items: "{{ user_checks.results }}"
+        msg: "User {{ item.item }} exists"
+      loop: "{{ user_exists.results }}"
       when: item.rc == 0
-
-    - name: Display non-existence of users
-      debug:
-        msg: "User '{{ item.item }}' does not exist"
-      with_items: "{{ user_checks.results }}"
-      when: item.rc != 0
