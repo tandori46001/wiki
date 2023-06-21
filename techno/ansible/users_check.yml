@@ -8,13 +8,13 @@
 
   tasks:
     - name: Read users from file
-      slurp:
-        src: "{{ users_file }}"
+      command: cat "{{ users_file }}"
       register: users_content
+      changed_when: False
 
     - name: Verify users exist
       shell: "getent passwd {{ item }}"
-      with_items: "{{ users_content['content'] | b64decode | split('\n') }}"
+      with_lines: "{{ users_content.stdout_lines }}"
       register: user_exists
       ignore_errors: True
 
