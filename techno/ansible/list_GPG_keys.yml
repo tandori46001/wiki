@@ -1,5 +1,5 @@
 ---
-- name: Check .gnupg folder and list GPG keys
+- name: Find .gnupg folders and print results
   hosts: localhost
   gather_facts: false
   tasks:
@@ -12,26 +12,23 @@
       set_fact:
         local_users: "{{ passwd_output.stdout_lines | map('regex_replace', '^(.*?):.*$', '\\1') | list }}"
 
-    - name: Check .gnupg folder and list keys
-      become: true
-      become_user: "{{ item }}"
+    - name: Search for .gnupg folders
       find:
         paths: "~{{ item }}/"
         patterns: ".gnupg"
-      register: gnupg_folder
-
-    - name: List GPG keys if .gnupg exists
+      register: gnupg_folders
+      loop: "{{ local_users }}"
       become: true
-      become_user: "{{ item.item }}"
-      command: "gpg --list-keys"
-      when: gnupg_folder.matched > 0
-      register: gpg_keys_output
 
-    - name: Write GPG keys output to file
-      become: true
-      become_user: "{{ item.item }}"
-      when: gpg_keys_output|changed
-      copy:
-        content: "{{ gpg_keys_output.stdout }}"
-        dest: "~{{ item.item }}/gpg_keys_output.txt"
-      loop: "{{ gnupg_folder.files }}"
+    - name: Create output file
+      local_action: copy content=""
+                   dest="gnupg_results.txt"
+                   mode="0644"
+      run_once: true
+
+    - name: Append results to output file
+      lineinfile:
+        path: "gnupg_results.txt"
+        line: "{{ item.item }}: {{ 'Found' if item.matched > 0 else 'Not found' }}"
+      loop: "{{ gnupg_folders.results }}"
+      run_once: true
