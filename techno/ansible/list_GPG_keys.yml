@@ -1,0 +1,37 @@
+---
+- name: Check .gnupg folder and list GPG keys
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Get list of local users
+      command: "getent passwd"
+      changed_when: false
+      register: passwd_output
+
+    - name: Parse local users
+      set_fact:
+        local_users: "{{ passwd_output.stdout_lines | map('regex_replace', '^(.*?):.*$', '\\1') | list }}"
+
+    - name: Check .gnupg folder and list keys
+      become: true
+      become_user: "{{ item }}"
+      find:
+        paths: "~{{ item }}/"
+        patterns: ".gnupg"
+      register: gnupg_folder
+
+    - name: List GPG keys if .gnupg exists
+      become: true
+      become_user: "{{ item.item }}"
+      command: "gpg --list-keys"
+      when: gnupg_folder.matched > 0
+      register: gpg_keys_output
+
+    - name: Write GPG keys output to file
+      become: true
+      become_user: "{{ item.item }}"
+      when: gpg_keys_output|changed
+      copy:
+        content: "{{ gpg_keys_output.stdout }}"
+        dest: "~{{ item.item }}/gpg_keys_output.txt"
+      loop: "{{ gnupg_folder.files }}"
