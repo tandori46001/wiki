@@ -1,0 +1,23 @@
+---
+- name: Check .gnupg folder and run gpg command
+  hosts: localhost
+  gather_facts: true
+  become: yes
+
+  tasks:
+    - name: Find local users
+      getent:
+        database: passwd
+      register: local_users
+
+    - name: Loop through local users
+      shell: |
+        if [ -d "{{ item.home }}/{{ item.name }}/.gnupg" ]; then
+          sudo -u {{ item.name }} gpg --list-keys > "{{ item.home }}/gpg_keys.txt"
+        fi
+      loop: "{{ local_users.entries }}"
+      when: item.home is defined and item.name != "root"
+
+    - name: Display results
+      debug:
+        var: local_users
