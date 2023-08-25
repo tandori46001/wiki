@@ -1,0 +1,22 @@
+---
+- name: Check .gnupg folder and run gpg command for specific users
+  hosts: localhost
+  gather_facts: true
+  become: yes
+
+  tasks:
+    - name: Get usernames starting with ct20
+      shell: "grep -E '^ct20' /etc/passwd | cut -d ':' -f 1"
+      register: ct20_usernames
+
+    - name: Loop through filtered local users
+      shell: |
+        if [ -d "{{ item.home }}/.gnupg" ]; then
+          sudo -u {{ item.name }} gpg --list-keys > "{{ item.home }}/gpg_keys_{{ item.name }}.txt"
+        fi
+      loop: "{{ ct20_usernames.stdout_lines }}"
+      when: item != "root"
+
+    - name: Display results
+      debug:
+        var: ct20_usernames.stdout_lines
