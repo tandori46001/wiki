@@ -1,5 +1,18 @@
 SELINUX - A ne pas desactiver
 
+SELinux stands for Security Enhanced Linux.
+
+Definition:
+Il s'agit d'un mécanisme d'étiquetage visant à fournir une sécurité élevée aux fichiers et autres objets du système, en les protégeant des processus non autorisés ainsi que des processus autorisés n'ayant pas besoin d'un tel accès pour éviter les abus.
+On peut installer SELinux sur n'importe quel système Linux existant. Cette utilisation ne sera pas utile pour tous les utilisateurs individuels, mais elle est essentielle pour les systèmes de serveur.
+Sa rigidité en matière de sécurité peut être comprise par le fait qu'avec SELinux, même un processus détenu par l'utilisateur root, s'il est compromis, ne peut pas accéder aux fichiers auxquels il n'a pas été donné d'accès.
+
+---------------------------
+Comment fonctionne SELinux ?
+SELinux applique la politique d'accès qui sera suivie par le noyau chaque fois qu'un processus doit accéder à un fichier ou à un objet. Selon la politique, chaque fichier ou processus se voit attribuer une étiquette. Ainsi, lorsqu'un processus avec l'étiquette a:a:a doit accéder au fichier (avec l'étiquette b:b:b), les deux doivent correspondre (à l'exception de la configuration MLS dans laquelle une hiérarchie sera suivie selon la politique).
+---------------------------
+Notez que désactiver SELinux sur un serveur réintroduit de nombreuses menaces pour le système. Assurez-vous que vous ne faites pas cela par commodité ni en raison de contenus spéculatifs dans des articles, mais pour une raison valable.
+---------------------------
 Des furnisseurs qui demande de desactiver SELinux lorsque qu'une application particulière ne fonctionnera pas (...avec SELinux).
 Cela est généralement dû au fait qu'ils sont trop paresseux pour comprendre pourquoi.
 Bien que cela permette généralement à une application de s'exécuter, cela transforme également un système relativement sécurisé en un système relativement non sécurisé.
@@ -7,6 +20,13 @@ Bien que cela permette généralement à une application de s'exécuter, cela tr
 Tips:
 Donc, avant de désactiver complètement SELinux, jetez un œil à certaines des modifications moins graves qui permettront probablement à votre application de s'exécuter.
 
+------------------------
+En désactivant SELinux, chaque processus aura accès aux fichiers comme dans un système Linux normal. Les abus de droits ne peuvent pas être empêchés. Un processus piraté peut accéder à des fichiers confidentiels qui ne sont pas nécessaires à sa fonction d'origine et pourraient être utilisés de manière abusive. C'est un problème grave.
+
+Si un processus avec des permissions root est compromis, alors l'ensemble du système est en danger. Ce que SELinux offre, c'est une sécurité plus rigide.
+
+
+-------------------------
 Tout d'abord, il est nécessaire de comprendre ce que SELinux cherche à accomplir.
 
 
@@ -75,3 +95,7 @@ Fournir un support pour SELinux, ou d'autres systèmes de contrôle d'accès, n�
 
 
 REF: https://www.electronicdesign.com/technologies/embedded/article/21807408/dont-do-it-disabling-selinux
+
+
+
+
