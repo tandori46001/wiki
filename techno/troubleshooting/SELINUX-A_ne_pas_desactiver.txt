@@ -1,0 +1,77 @@
+SELINUX - A ne pas desactiver
+
+Des furnisseurs qui demande de desactiver SELinux lorsque qu'une application particulière ne fonctionnera pas (...avec SELinux).
+Cela est généralement dû au fait qu'ils sont trop paresseux pour comprendre pourquoi.
+Bien que cela permette généralement à une application de s'exécuter, cela transforme également un système relativement sécurisé en un système relativement non sécurisé.
+
+Tips:
+Donc, avant de désactiver complètement SELinux, jetez un œil à certaines des modifications moins graves qui permettront probablement à votre application de s'exécuter.
+
+Tout d'abord, il est nécessaire de comprendre ce que SELinux cherche à accomplir.
+
+
+Fondamentalement, tous les éléments que SELinux protège, y compris les fichiers, les répertoires, les ports, etc., ont une étiquette sous la forme utilisateur:rôle:type. La liste des étiquettes pour les fichiers et les répertoires est intégrée à la commande ls. Les étiquettes sont utilisées par SELinux pour déterminer quels profils de sécurité s'appliquent à l'élément.
+
+1. La commande ls -Z affiche les étiquettes SELinux des fichiers et répertoires.
+L'étiquette peut être modifiée à l'aide du programme chcon, mais il est préférable d'utiliser un contexte SELinux géré à l'aide du programme semanage en conjonction avec le programme restorecon (Fig. 2). En général, une application configurée pour SELinux inclura un profil avec des contextes qui définissent comment les étiquettes seront définies pour les fichiers, les répertoires, etc., utilisés par l'application.
+
+2. L'application restorecon modifie les étiquettes de fichiers et de répertoires en fonction du contexte de fichier enregistré (fcontext). Le programme semanage est utilisé pour manipuler les contextes SELinux.
+Ce qui se produit souvent, c'est qu'un utilisateur créera ou modifiera des fichiers associés à une application de telle sorte que les étiquettes sont incorrectes. Bien sûr, SELinux empêchera alors l'application d'utiliser ces fichiers, comme il se doit. Exécuter restorecon sur les fichiers et répertoires où des erreurs surviennent devrait être la première étape pour permettre à une application de s'exécuter correctement sous SELinux.
+
+Le fichier /var/log/audit/audit.log dans CentOS et Fedora est l'endroit où les erreurs et les actions SELinux sont consignées. Les actions qui sont refusées peuvent être repérées en filtrant le fichier à l'aide d'outils tels que grep. Les entrées de journal sont généralement cryptiques, mais elles fournissent des informations qui peuvent être utilisées pour résoudre les problèmes d'applications qui ne fonctionnent pas avec SELinux.
+
+3. Le fichier /var/log/audit/audit.log peut être filtré à l'aide d'outils tels que grep pour afficher les actions qui ont été refusées par SELinux.
+Gardez à l'esprit que SELinux peut fonctionner dans l'un des trois modes suivants : désactivé, permissif et strict. Le premier mode signifie que SELinux ne fait rien. Les modes permissif et strict font surveiller le système par SELinux. Cependant, le mode permissif se contente d'ajouter des entrées au fichier journal d'audit, tandis que le mode strict empêche les applications d'utiliser un élément. Nous souhaitons toujours que SELinux soit en mode strict, mais nous voulons aussi que les applications s'exécutent.
+La recommandation habituelle après avoir exécuté la commande setenforce 0 est de faire fonctionner SELinux en mode permissif, afin qu'il génère idéalement une trace d'audit avec des refus, qui pourront ensuite être utilisés pour créer un profil de sécurité permettant à une application de s'exécuter. Ce profil peut être généré à partir des entrées de journal et du programme audit2allow.
+Bien que grep et des outils similaires soient utiles pour filtrer le journal d'audit, SELinux est accompagné du programme ausearch qui est souvent préférable à utiliser avec audit2allow. Il peut filtrer les entrées en fonction de nombreux critères, des hôtes aux identifiants de processus.
+
+4. L'application ausearch peut filtrer le journal d'audit de manière à ce qu'audit2allow puisse générer un profil qui est ajouté à SELinux en utilisant semodule.
+Le défi avec audit2allow est qu'il créera un profil qui permet à une application de faire plus que ce qu'elle pourrait faire sans le profil. Cependant, il se peut que cela ne soit pas suffisant pour permettre à l'application de s'exécuter en permanence. Cela est dû au fait que le journal d'audit ne contiendra que des problèmes liés à ce que l'application a fait pendant la période du journal. Le profil peut être suffisant si toutes les actions de l'application ont été testées. Cependant, si certaines actions n'ont pas été testées, il est possible que le profil généré permette à l'application de fonctionner pendant un certain temps, puis échoue ou rencontre des erreurs à un moment donné en rencontrant des actions qui n'ont pas été testées. Exécuter à nouveau SELinux en mode permissif permettrait aux nouvelles actions refusées d'être enregistrées afin qu'un nouveau profil puisse être créé.
+Utiliser un profil généré par audit2allow peut donner à une application plus d'accès que ce que l'on préférerait, mais cela reste préférable du point de vue de la sécurité que de laisser toutes les applications avoir une totale liberté sur un système. Il est vrai que le mécanisme de sécurité de base de Linux serait toujours en jeu ; cependant, ceux-ci sont plus libéraux que la confinement fourni par SELinux. Comme mentionné, le défi avec l'approche audit2allow est de savoir si le profil généré est suffisant.
+Je recommande que vous examiniez d'abord le journal d'audit filtré qui sera utilisé avec audit2allow pour voir si le fait de changer les étiquettes résoudra le problème. Souvent, définir un contexte de fichier ou de répertoire en utilisant semanage, mentionné précédemment, permettra à un programme de s'exécuter.
+
+Variables SELinux
+Étendre les limites de sécurité d'une application à l'aide de audit2allow peut être nécessaire pour les applications qui n'ont pas déjà de profils SELinux définis, mais de nombreuses applications sont livrées avec des profils qui incluent des variables SELinux. Ces variables peuvent être utilisées pour modifier les limites de sécurité de manière contrôlée. Elles sont souvent utiles lorsqu'il s'agit de faire fonctionner ensemble deux programmes activés par SELinux, tels que le serveur de fichiers Samba et le serveur web Apache (httpd).
+Les variables SELinux sont manipulées à l'aide des commandes setsebool et getsebool (Fig. 5). En général, ces booléens étendent considérablement les limites de certains aspects du profil de sécurité associé. Par exemple, le serveur web Apache sera normalement limité aux ports qu'il peut utiliser. En définissant la variable httpd_can_network_connect, l'application peut utiliser n'importe quel port. Cela est souvent fait si le port requis est inconnu ou changerait de manière inconnue. Il serait préférable de créer un profil autorisant un port spécifique ou une plage de ports. Néanmoins, utiliser la variable ne crée pas d'autres zones dans lesquelles le serveur web pourrait être limité.
+
+5. Une liste des variables SELinux et de leurs valeurs peut être obtenue en utilisant la commande getsebool.
+Comme mentionné précédemment, ces variables sont parfois utilisées pour permettre à deux programmes activés par SELinux de fonctionner ensemble. Cela est dû au fait que les profils sont souvent conçus pour donner à une application l'accès à ses ressources tout en empêchant les autres programmes d'y accéder. Ce ne serait pas le cas si un partage de fichiers Samba était utilisé pour un site web.
+Il existe d'autres moyens de permettre un tel partage, mais l'examen d'exemples même basiques dépasse le cadre de cet article. Il suffit de dire que vous ne voulez pas désactiver SELinux et permettre d'élargir les limites de sécurité en utilisant des variables SELinux ; il est beaucoup préférable d'avoir le support de SELinux.
+
+Domaines Permissifs
+
+Exécuter SELinux en mode permissif permet à toutes les applications de s'exécuter sans générer de refus SELinux. Cependant, les problèmes sont toujours enregistrés dans la trace d'audit. Il est possible de fournir cette prise en charge de manière plus limitée en utilisant des domaines permissifs (Fig. 6). Dans ce cas, SELinux fonctionne en mode strict, limitant la plupart des applications, bien que celles appartenant à un domaine permissif ne soient pas soumises à ces restrictions entraînant des erreurs. Tous les refus seront toujours enregistrés, mais les applications seront autorisées à continuer sans entrave.
+
+6. Les domaines permissifs fournissent un moyen sélectif d'étendre les limitations de sécurité d'un domaine.
+Encore une fois, en utilisant cette approche, les limites de sécurité sont étendues, mais de manière connue où un utilisateur, un gestionnaire ou un développeur peut déterminer si cette étendue est suffisante pour un système. De même, c'est plus limité que de désactiver complètement SELinux.
+
+D'autres Outils SELinux
+D'autres outils sont utiles lors de l'utilisation de SELinux. Ceux-ci incluent :
+aureport - fournit un rapport filtré et formaté du journal d'audit
+avcstat - affiche les statistiques du cache de vecteurs d'accès
+sealert - fait partie du système de surveillance GUI
+seinfo - sdf
+sesearch - recherche les politiques SELinux pour une règle
+sediff - affiche les différences entre les politiques SELinux
+sechecker - vérifie les politiques SELinux
+findcon - recherche les fichiers ou répertoires avec un contexte SELinux souhaité
+La plupart de ces outils ne sont pas installés lorsque SELinux est en cours d'exécution, car ils sont souvent utilisés pour des tâches de statut, de développement ou de débogage. Un système sécurisé à l'aide de SELinux ne les exige pas, mais ils sont inestimables lorsqu'il s'agit de faire fonctionner une application sous SELinux. Par exemple, essayez la commande sesearch -s httpd_t --allow -d. Elle liste toutes les règles associées aux fichiers étiquetés ou basés sur le type httpd_t.
+
+Voici quelques liens utiles pour plus d'informations sur SELinux et d'autres modules de sécurité :
+
+https://github.com/SELinuxProject
+http://selinuxproject.org (remplacé par https://github.com/SELinuxProject)
+Documentation NSA SELinux
+Guide de l'utilisateur et de l'administrateur SELinux
+Projet Fedora SELinux
+Utilisation des modules de sécurité Linux org
+AppArmor
+Simplified Mandatory Access Control Kernel (SMACK) - utilisé par Tizen Linux
+TOMOYO Linux
+SELinux et les Développeurs
+
+Fournir une application sans support SELinux, si cette application est destinée à des plates-formes où elle serait disponible, devrait être interdit. La sécurité est devenue essentielle au bon fonctionnement des PC, des serveurs et des systèmes embarqués, et ne pas fournir ce type de sécurité est simplement une mauvaise pratique de développement. C'est aussi quelque chose qu'il est beaucoup plus facile pour un développeur d'inclure plutôt que d'essayer d'adapter une application à un système SELinux après coup.
+Fournir un support pour SELinux, ou d'autres systèmes de contrôle d'accès, nécessite une certaine compréhension de l'environnement de sécurité, ce qui est en réalité beaucoup plus simple que la plupart des développeurs pourraient le penser.
+
+
+REF: https://www.electronicdesign.com/technologies/embedded/article/21807408/dont-do-it-disabling-selinux
