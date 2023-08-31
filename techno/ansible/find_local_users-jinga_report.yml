@@ -1,0 +1,27 @@
+- name: Find local users starting with ct20
+  hosts: your_server
+  tasks:
+    - name: Get all user info
+      getent:
+        database: passwd
+      register: users
+
+    - name: Generate report
+      template:
+        src: report.j2
+        dest: /tmp/report.txt
+      vars:
+        users: "{{ users.stdout_lines }}"
+
+
+
+Jinja template - report.j2
+
+{% for user in users %}
+{% if user.startswith('ct20') %}
+Username: {{ user.split(':')[0] }}
+Home directory: {{ user.split(':')[5] }}
+Shell: {{ user.split(':')[6] }}
+
+{% endif %}
+{% endfor %}
