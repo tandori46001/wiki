@@ -1,23 +1,12 @@
 - name: Find local users starting with ct20
-  hosts: your_server
+  hosts: all
   tasks:
-    - name: Get all user info
-      getent:
-        database: passwd
-      register: users
+    - name: Get hostname
+      debug:
+        var: ansible_hostname
 
-    - name: Generate report
-      template:
-        src: report.j2
-        dest: /tmp/report.txt
-      vars:
-        users: "{{ users.stdout_lines }}"
-
-============================================
-- hosts: all
-  tasks:
     - name: Get local users
-      shell: getent passwd | awk -F: '{print $1}'
+      shell: getent passwd
       register: local_users
 
     - name: Generate report
@@ -25,27 +14,20 @@
         src: report.j2
         dest: /tmp/report.txt
       vars:
-        users: "{{ local_users.stdout_lines }}"
-
+        - users: "{{ local_users.stdout_lines }}"
+        - hostname: "{{ ansible_hostname }}"
 
 ============================================
-
-
-
 Jinja template - report.j2
+
+Hostname: {{ hostname }}
 
 {% for user in users %}
 {% if user.startswith('ct20') %}
 Username: {{ user.split(':')[0] }}
+UID: {{ user.split(':')[3] }}
 Home directory: {{ user.split(':')[5] }}
 Shell: {{ user.split(':')[6] }}
 
 {% endif %}
-{% endfor %}
-
-============================================
-
-Local Users:
-{% for user in users %}
-- {{ user }}
 {% endfor %}
