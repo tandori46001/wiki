@@ -13,6 +13,23 @@
       vars:
         users: "{{ users.stdout_lines }}"
 
+============================================
+- hosts: all
+  tasks:
+    - name: Get local users
+      shell: getent passwd | awk -F: '{print $1}'
+      register: local_users
+
+    - name: Generate report
+      template:
+        src: report.j2
+        dest: /tmp/report.txt
+      vars:
+        users: "{{ local_users.stdout_lines }}"
+
+
+============================================
+
 
 
 Jinja template - report.j2
@@ -24,4 +41,11 @@ Home directory: {{ user.split(':')[5] }}
 Shell: {{ user.split(':')[6] }}
 
 {% endif %}
+{% endfor %}
+
+============================================
+
+Local Users:
+{% for user in users %}
+- {{ user }}
 {% endfor %}
