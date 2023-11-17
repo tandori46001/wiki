@@ -1,0 +1,32 @@
+---
+- name: Change Root Passwords on Linux Servers
+  hosts: all
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: Generate Random Password
+      set_fact:
+        random_password: "{{ lookup('password', '/dev/null length=15 chars=ascii_letters,digits,punctuation') }}"
+
+    - name: Change Root Password
+      user:
+        name: root
+        password: "{{ random_password | password_hash('sha512') }}"
+        update_password: always
+      register: result
+
+    - name: Save Passwords to File
+      lineinfile:
+        path: "/path/to/root_passwords.txt"
+        line: "{{ ansible_hostname }}: {{ random_password }}"
+      delegate_to: localhost
+
+- name: Display Changed Passwords
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Display Passwords
+      debug:
+        msg: "{{ lookup('file', '/path/to/root_passwords.txt') }}"
