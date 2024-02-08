@@ -1,0 +1,77 @@
+---
+- name: CIS Compliance Check for SLES 15
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: "Ensure cron daemon is enabled (1.1.1)"
+      systemd:
+        name: cron
+        enabled: yes
+      register: cron_status
+
+    # Add more tasks for other CIS controls
+
+  handlers:
+    - name: Generate HTML Report
+      copy:
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <style>
+              table {
+                font-family: Arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+              }
+
+              th, td {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+              }
+
+              th {
+                background-color: #f2f2f2;
+              }
+
+              .pass {
+                color: green;
+              }
+
+              .fail {
+                color: red;
+              }
+            </style>
+          </head>
+          <body>
+
+          <h2>CIS Compliance Report for SLES 15</h2>
+
+          <table>
+            <tr>
+              <th>CIS Control</th>
+              <th>Expected Result</th>
+              <th>Actual Result</th>
+              <th>Status</th>
+            </tr>
+            <tr>
+              <td>Ensure cron daemon is enabled (1.1.1)</td>
+              <td>Enabled</td>
+              <td>{{ cron_status.enabled }}</td>
+              <td>{% if cron_status.enabled %}<span class="pass">Pass</span>{% else %}<span class="fail">Fail</span>{% endif %}</td>
+            </tr>
+            <!-- Add more rows for other CIS controls -->
+          </table>
+
+          </body>
+          </html>
+        dest: "/tmp/checker-sles15-report.html"
+      notify: send_report
+
+  handlers:
+    - name: send_report
+      debug:
+        msg: "CIS Compliance report generated at /tmp/checker-sles15-report.html"

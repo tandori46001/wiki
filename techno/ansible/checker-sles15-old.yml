@@ -1,0 +1,39 @@
+---
+- name: CIS Compliance Check for SLES 15
+  hosts: all
+  become: yes
+
+  tasks:
+    # 1. Initial Setup - Example Checks
+    - name: "Ensure cron daemon is enabled (1.1.1)"
+      systemd:
+        name: cron
+        enabled: yes
+      register: cron_status
+
+    - name: "Verify cron daemon is enabled"
+      assert:
+        that:
+          - cron_status is changed
+
+    # 2. Services - Example Checks
+    # This section would include tasks to check service configurations
+
+    # 3. Network Configuration - Example Checks
+    # This section would include tasks to check network configurations
+
+    # ... more sections ...
+
+    # 6. System Maintenance - Example Checks
+    - name: "Ensure permissions on /etc/passwd are 0644 (6.1.2)"
+      file:
+        path: "/etc/passwd"
+        mode: '0644'
+      register: passwd_file
+
+    - name: "Verify permissions on /etc/passwd"
+      assert:
+        that:
+          - passwd_file is changed
+
+    # ... more tasks for different CIS controls as needed ...
