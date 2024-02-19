@@ -6,6 +6,14 @@ cat checker_sap.yml
   gather_facts: yes
 
   tasks:
+    - name: "Nom serveur"
+      command: "hostname -f"
+      register: server_name
+
+    - name: "Version OS"
+      command: "cat /etc/*rel* |grep PRETTY_NAME"
+      register: server_name
+
     - name: "Ensure cron daemon is enabled"
       systemd:
         name: cron
