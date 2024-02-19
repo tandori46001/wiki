@@ -12,7 +12,7 @@ cat checker_sap.yml
 
     - name: "Version OS"
       command: "cat /etc/*rel* |grep PRETTY_NAME"
-      register: server_name
+      register: version_os
 
     - name: "Ensure cron daemon is enabled"
       systemd:
@@ -37,6 +37,8 @@ checker_sap_controls:
 cat checker_sap_raport.j2
 Raport de conformite pour la securite SAP des serveurs SLES 15
 ==============================================================
+Nom serveur: {{ server_name }}
+Version de l'os: {{ version_os }}
 
 {% for control in checker_sap_controls %}
 Nom Control: {{ control.name }}
