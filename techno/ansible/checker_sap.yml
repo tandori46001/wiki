@@ -29,7 +29,7 @@ cat checker_sap.yml
 
 cat checker_sap_controls.yml
 checker_sap_controls:
-  - name: "Ensure cron daemon is enabled (1.1.1)"
+  - name: "Ensure cron daemon is enabled"
     expected_result: "True"
     actual_result: "{{ cron_status.enabled }}"
   # Ajouter plus des controles SAP
