@@ -1,0 +1,41 @@
+cat checker_sap.yml
+---
+- name: Checker SAP pour SLES 15
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: "Ensure cron daemon is enabled"
+      systemd:
+        name: cron
+        enabled: yes
+      register: cron_status
+
+    # Ajouter plus des controls
+
+    - name: Generer le rapport
+      template:
+        src: checker_sap_raport.j2
+        dest: checker_sap_raport.txt
+
+cat checker_sap_controls.yml
+checker_sap_controls:
+  - name: "Ensure cron daemon is enabled (1.1.1)"
+    expected_result: "True"
+    actual_result: "{{ cron_status.enabled }}"
+  # Ajouter plus des controles SAP
+
+cat checker_sap_raport.j2
+Raport de conformite pour la securite SAP des serveurs SLES 15
+==============================================================
+
+{% for control in checker_sap_controls %}
+Nom Control: {{ control.name }}
+Resultat Attendu: {{ control.expected_result }}
+Resultat Actuel: {{ control.actual_result }}
+Status: {% if control.expected_result == control.actual_result %}Pass{% else %}Fail{% endif %}
+
+{% endfor %}
+
+[ransible@lcent7srvlabotest1 checker_sles_test2]$ 
