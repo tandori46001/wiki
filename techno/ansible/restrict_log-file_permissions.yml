@@ -1,0 +1,29 @@
+---
+- name: Ensure log files have restrictive permissions
+  hosts: your_redhat_8_server
+  gather_facts: true
+  tasks:
+    - name: Find log files in /var/log
+      find:
+        paths: /var/log
+        file_type: file
+      register: log_files
+
+    - name: Gather facts about log files
+      stat:
+        path: "{{ item.path }}"
+      with_items: "{{ log_files.files }}"
+      register: log_files_stats
+
+    - name: Print report for log files with less restrictive permissions
+      debug:
+        msg: "{{ item.item.path }} - {{ item.stat.mode }}"
+      with_items: "{{ log_files_stats.results }}"
+      when: item.stat.mode | int < 384
+
+    - name: Set permissions to 640 for log files that need it
+      file:
+        path: "{{ item.item.path }}"
+        mode: '0640'
+      with_items: "{{ log_files_stats.results }}"
+      when: item.stat.mode | int < 384
