@@ -11,7 +11,7 @@ cat checker_sap.yml
       register: server_name
 
     - name: "Version OS"
-      command: "cat /etc/*rel* |grep PRETTY_NAME"
+      shell: "cat /etc/*rel* |grep PRETTY_NAME"
       register: version_os
 
     - name: "Ensure cron daemon is enabled"

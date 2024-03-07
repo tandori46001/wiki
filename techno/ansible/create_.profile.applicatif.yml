@@ -1,0 +1,13 @@
+---
+- hosts: your_target_servers
+  tasks:
+    - name: Find home directories of users
+      command: /path/to/get_home_dirs.py
+      register: home_dirs_output
+
+    - name: Add a file to each user's home directory
+      ansible.builtin.copy:
+        src: /path/to/your/file.txt
+        dest: "{{ item.split(':')[1] }}/file.txt"
+      loop: "{{ home_dirs_output.stdout_lines }}"
+      become: yes
